@@ -69,3 +69,75 @@
     text-align: center;
     background-color: #F1F7F2;
 }
+
+
+
+
+*{
+    box-sizing: border-box;
+}
+
+   /*
+   Fondo: color: #FFFFFF;
+   Fondo secundario: color: #F1F7F2;
+   Texto: color: #222222;
+   Acento: color: #F2C14E;
+   Principal: color: #3A7D44;
+   */
+   
+body{
+    margin: 0;
+    font-family: Arial,sans-serif;
+    color: #222222;
+    background-color: #FFFFFF;
+}
+
+header{
+    padding: 20px;
+    color: #222222;
+    background-color: #F1F7F2;
+    text-align: center;
+}
+
+main{
+    max-width: 1100px;
+    margin-top: 170px flex;
+    padding: 24px;
+    text-align: center;
+}
+
+.menu-completo {
+    display: none;
+}
+
+.menu-hamburguesa {
+    display: block;
+}
+
+/* TELÉFONO: desde 360px */
+@media (min-width: 360px) {
+    /* estilos para teléfonos */
+}
+
+/* TABLETA: desde 768px */
+@media (min-width: 768px) {
+    .menu-completo {
+        display: none;
+    }
+    .menu-hamburguesa {
+        display: block;
+    }
+
+}
+
+/* ESCRITORIO: desde 1280px */
+@media (min-width: 1280px) {
+    .menu-completo {
+        display: none;
+    }
+    
+    .menu-hamburguesa {
+        display: block;
+    }
+}
+
