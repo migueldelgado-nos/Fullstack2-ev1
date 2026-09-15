@@ -69,86 +69,91 @@
                                         </label>
                                     </div>
                                     <div class="col-auto">
-                                        <input type="text" id="nombre" class="from-control" placeholder="Ingrese el nombre">
+                                        <input type="text" id="nombre" class="from-control" >
                                     </div>
                                 </div>
 
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-auto">
-                                            <label for="edad" class="form-label">
-                                                Edad
-                                            </label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input type="number" class="form-control" id="edad">
-                                        </div>
-                                    </div>
-
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-auto">
-                                            <label for="sexo" class="form-label">
-                                                Sexo / Género
-                                            </label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <select class="form-select" id="sexo">
-                                                <option selected>Seleccionar</option>
-                                                <option>Femenino</option>
-                                                <option>Masculino</option>
-                                                <option>Otro</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-auto">
-                                            <label for="peso" class="form-label">
-                                                Peso (kg)
-                                            </label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input type="number" class="form-control" id="peso">
-                                        </div>
-                                    </div>
-
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-auto">
-                                        <label for="cintura" class="form-label">
-                                            Talla de cintura (cm)
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label for="edad" class="form-label">
+                                            Edad
                                         </label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input type="number" class="form-control" id="cintura">
-                                        </div>
                                     </div>
+                                    <div class="col-auto">
+                                        <input type="text" id="edad" class="form-control">
+                                    </div>
+                                </div>
 
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-auto">
-                                        <label for="altura" class="form-label">
-                                            Altura (cm)
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label for="sexo" class="form-label">
+                                            Sexo
                                         </label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input type="number" class="form-control" id="altura">
-                                        </div>
                                     </div>
-
-                                    <div class="row g-3 align-items-center">
-                                        <div class="col-auto">
-                                            <label for="grasa" class="form-label">
-                                                Índice de grasa corporal (%)
-                                            </label>
-                                        </div>
-                                        <div class="col-auto">
-                                            <input type="number" class="form-control" id="grasa">
-                                        </div>
+                                    <div class="col-auto">
+                                        <select class="form-select" id="sexo">
+                                            <option value="">Seleccionar</option>
+                                            <option value="femenino">Femenino</option>
+                                            <option value="masculino">Masculino</option>
+                                            <option value="otro">Otro</option>
+                                        </select>
                                     </div>
+                                </div>
 
-                                    <button id="mensajeExito" type="submit" class="btn btn-primary">
-                                        Guardar datos
-                                    </button>
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label for="peso" class="form-label">
+                                            Peso (kg)
+                                        </label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="number" class="form-control" id="peso">
+                                    </div>
+                                </div>
 
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                    <label for="cintura" class="form-label">
+                                        Talla de cintura (cm)
+                                    </label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="number" class="form-control" id="cintura">
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                    <label for="altura" class="form-label">
+                                        Altura (cm)
+                                    </label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="number" class="form-control" id="altura">
+                                    </div>
+                                </div>
+
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label for="grasa" class="form-label">
+                                            Índice de grasa corporal (%)
+                                        </label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <input type="number" class="form-control" id="grasa">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">
+                                    Guardar datos
+                                </button>
                                 </form>
+                                <div
+                                    id="mensaje-resultado"
+                                    class="mt-4"
+                                    role="alert"
+                                >
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -230,10 +235,16 @@
                                         </div>
                                     </div>
 
-                                    <button id="mensajeExito" type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary">
                                         Guardar plan de alimentación
                                     </button>
                                 </form>
+                                <div
+                                    id="mensaje-resultado"
+                                    class="mt-4"
+                                    role="alert"
+                                >
+                                </div>
                             </div>
                         </div>
                     </div>
