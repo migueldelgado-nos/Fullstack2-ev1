@@ -7,9 +7,7 @@ const formularioAlimentacion = document.getElementById("formularioAlimentacion")
 const formularioAlimentacionForm = document.getElementById("formulario-alimentacion")
 
 tipoFormulario.addEventListener("change", function () {
-
-    if (tipoFormulario.value === "formularioDatos") {
-
+    if (tipoFormulario.value === "datos") {
         formularioDatos.classList.remove("d-none");
         formularioAlimentacion.classList.add("d-none");
 
@@ -21,6 +19,5 @@ tipoFormulario.addEventListener("change", function () {
     }
 
 });
-
 //Boton formulario de paciente en vista nutricionista
 
