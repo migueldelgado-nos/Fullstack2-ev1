@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel Paciente</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script src="js/validaciones2.js" defer></script>
+</head>
+
+<body>
+    <header class="container">
+        <div class="row">
+            <div class="col">
+
+                <h1>Panel del Paciente</h1>
+                <p>Clínica Nutricional NutriVida</p>
+
+            </div>
+
+            <div class="col text-end">
+
+                <a href="index.html" class="btn btn-secondary">
+                    Cerrar sesión
+                </a>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="#cita">Agendar cita</a>
+            <a href="#progreso">Mi progreso</a>
+            <a href="#plan">Mi plan alimenticio</a>
+        </nav>
+    </header>
+
+    <main class="container">
+
+        <!-- AGENDAR CITA -->
+        <section class="row" id="cita">
+            <div class="col">
+                <h2>Agendar cita</h2>
+                <form id="formCita">
+                    <div class="mb-3">
+
+                        <label for="servicio" class="form-label">
+                            Tipo de atención
+                        </label>
+
+                        <select class="form-select" id="servicio">
+
+                            <option selected>Seleccionar</option>
+                            <option>Primera consulta nutricional</option>
+                            <option>Control nutricional</option>
+                            <option>Teleconsulta</option>
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nutricionista" class="form-label">
+                            Nutricionista
+                        </label>
+
+                        <select class="form-select" id="nutricionista">
+
+                            <option selected>Seleccionar</option>
+                            <option>Nutricionista 1</option>
+                            <option>Nutricionista 2</option>
+                            <option>Nutricionista 3</option>
+                            <option>Nutricionista 4</option>
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fecha" class="form-label">
+                            Fecha
+                        </label>
+
+                        <input
+                            type="date"
+                            class="form-control"
+                            id="fecha">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="hora" class="form-label">
+                            Hora
+                        </label>
+
+                        <input
+                            type="time"
+                            class="form-control"
+                            id="hora">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="motivo" class="form-label">
+                            Motivo de la consulta
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="motivo"
+                            rows="3">
+                        </textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Agendar cita
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- PROGRESO -->
+        <section class="row" id="progreso">
+            <div class="col">
+                <h2>Mi progreso</h2>
+
+                <p>
+                    <strong>Peso actual:</strong>
+                    70 kg
+                </p>
+
+                <p>
+                    <strong>Altura:</strong>
+                    168 cm
+                </p>
+
+                <p>
+                    <strong>Circunferencia de cintura:</strong>
+                    82 cm
+                </p>
+            </div>
+        </section>
+
+        <!-- PLAN ALIMENTICIO -->
+        <section class="row" id="plan">
+            <div class="col">
+                <h2>Mi plan alimenticio</h2>
+
+                <p>
+                    Aquí podrás revisar el plan alimenticio
+                    asignado por tu nutricionista.
+                </p>
+
+                <h3>Desayuno</h3>
+                <p>Plan indicado por el nutricionista.</p>
+
+                <h3>Almuerzo</h3>
+                <p>Plan indicado por el nutricionista.</p>
+
+                <h3>Cena</h3>
+                <p>Plan indicado por el nutricionista.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+
+        <p>
+            Clínica Nutricional NutriVida
+        </p>
+
+    </footer>
+</body>
+</html>
