@@ -1,0 +1,71 @@
+
+/* ESTILOS PACIENTE */
+
+.pagina-paciente section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.pagina-paciente nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #3A7D44;
+}
+
+.pagina-paciente nav a:hover {
+    text-decoration: underline;
+}
+
+.pagina-paciente footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    background-color: #F1F7F2;
+}
+
+.pagina-paciente header .row {
+    position: relative;
+}
+
+.pagina-paciente header .row .col:first-child {
+    flex: 0 0 100%;
+    text-align: center;
+}
+
+.pagina-paciente header .text-end {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+
+/* ESTILOS REGISTRO */
+
+.pagina-registro section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.pagina-registro form {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.pagina-registro nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #3A7D44;
+}
+
+.pagina-registro nav a:hover {
+    text-decoration: underline;
+}
+
+.pagina-registro footer {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    background-color: #F1F7F2;
+}
