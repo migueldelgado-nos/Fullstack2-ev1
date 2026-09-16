@@ -14,7 +14,7 @@
 </head>
 
 <body class="pagina-registro">
-    <header class="container">
+    <header>
         <h1>Registro de Usuario</h1>
         <nav class="menu">
             <a href="index.html">Inicio</a>
@@ -94,11 +94,11 @@
 
                         <select class="form-select" id="region">
 
-                            <option selected>Seleccionar</option>
-                            <option>Región de La Araucanía</option>
-                            <option>Región del Biobío</option>
-                            <option>Región de Los Ríos</option>
-                            <option>Región Metropolitana</option>
+                            <option value="">Seleccionar</option>
+                            <option value="Araucanía">Región de La Araucanía</option>
+                            <option value="Biobío">Región del Biobío</option>
+                            <option value="Los Ríos">Región de Los Ríos</option>
+                            <option value="Metropolitana">Región Metropolitana</option>
 
                         </select>
                     </div>
@@ -110,10 +110,10 @@
 
                         <select class="form-select" id="comuna">
 
-                            <option selected>Seleccionar</option>
-                            <option>Temuco</option>
-                            <option>Padre Las Casas</option>
-                            <option>Villarrica</option>
+                            <option value="">Seleccionar</option>
+                            <option value="">Temuco</option>
+                            <option value="">Padre Las Casas</option>
+                            <option value="">Villarrica</option>
 
                         </select>
                     </div>
@@ -141,6 +141,17 @@
                             id="password">
                     </div>
 
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            Repita Contraseña
+                        </label>
+
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="validacion-password">
+                    </div>
+
                     <button type="submit" class="btn btn-primary">
                         Registrarse
                     </button>
@@ -150,7 +161,7 @@
         </section>
     </main>
 
-    <footer class="container">
+    <footer>
 
         <p>Clínica Nutricional NutriVida</p>
 
