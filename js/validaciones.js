@@ -1,5 +1,5 @@
 // VALIDACIÓN REGISTRO DE USUARIO
-
+const tipoFormulario = document.getElementById("tipoFormulario");
 const formRegistro = document.getElementById("formRegistro");
 const formularioDatos = document.getElementById("formularioDatos");
 const formularioDatosForm = document.getElementById("formulario-datos");
@@ -12,33 +12,38 @@ const campoPeso = document.getElementById("peso");
 const campoTallaCintura = document.getElementById("cintura");
 const campoAltura = document.getElementById("altura");
 const campoGrasaCorporal = document.getElementById("grasa");
-const mensajeResultado = document.getElementById("mensaje-resultado");
-
+const mensajeResultado1 = document.getElementById("mensaje-resultado1");
+const mensajeResultado2 = document.getElementById("mensaje-resultado2");
 const campoDesayuno=document.getElementById("desayuno");
 const campoColacion=document.getElementById("colacion1");
 const campoAlmuerzo=document.getElementById("almuerzo");
 const campoColacionTarde=document.getElementById("colacion2");
 const campoCena=document.getElementById("cena");
 const campoObservaciones=document.getElementById("observaciones");
+const campoRun=document.getElementById("run");
+const campoApellidos=document.getElementById("apellidos");
+const campoCorreo=document.getElementById("correo");
+const campoRegion=document.getElementById("region");
+const campoComuna=document.getElementById("comuna");
+const campoDireccion=document.getElementById("direccion");
+const campoPassword=document.getElementById("password");
+const campoValidacionPassword=document.getElementById("validacion-password");
 
 if (formRegistro) {
 
     formRegistro.addEventListener("submit", function (event) {
 
-    } 
-    if (tipoFormulario.value === "alimentacion"){
-
-
         event.preventDefault();
 
-        const run = document.getElementById("run").value.trim();
-        const nombre = document.getElementById("nombre").value.trim();
-        const apellidos = document.getElementById("apellidos").value.trim();
-        const correo = document.getElementById("correo").value.trim();
-        const region = document.getElementById("region").value;
-        const comuna = document.getElementById("comuna").value;
-        const direccion = document.getElementById("direccion").value.trim();
-        const password = document.getElementById("password").value.trim();
+        const run = campoRun.value.trim();
+        const nombre = campoNombre.value.trim();
+        const apellidos = campoApellidos.value.trim();
+        const correo = campoCorreo.value.trim();
+        const region = campoRegion.value;
+        const comuna = campoComuna.value;
+        const direccion = campoDireccion.value.trim();
+        const password = campoPassword.value.trim();
+        const validacionPassword = campoValidacionPassword.value.trim();
 
         if (run === "") {
             alert("Debe ingresar el RUN");
@@ -54,9 +59,19 @@ if (formRegistro) {
             alert("Debe ingresar el nombre");
             return;
         }
+        if (/\d/.test(nombre)){
+            event.preventDefault();
+            alert("El nombre no puede tener numeros");
+            return;
+        }
 
         if (apellidos === "") {
             alert("Debe ingresar los apellidos");
+            return;
+        }
+        if (/\d/.test(apellidos)){
+            event.preventDefault();
+            alert("Los apellidos no pueden tener numeros");
             return;
         }
 
@@ -88,8 +103,8 @@ if (formRegistro) {
             return;
         }
 
-        if (password === "") {
-            alert("Debe ingresar una contraseña");
+        if (password === "" || validacionPassword === "") {
+            alert("Debe ingresar una contraseña y/o validar su contraseña");
             return;
         }
 
@@ -98,12 +113,18 @@ if (formRegistro) {
             return;
         }
 
+        if (password !== validacionPassword) {
+            event.preventDefault();
+            alert("Las contraseñas no coinciden");
+            return;
+            }
+
         const mensajeExito = document.getElementById("mensajeExito");
 
         mensajeExito.textContent = "Registro realizado correctamente";
 
         formRegistro.reset();
-
+    
     });
 
 }
@@ -138,6 +159,23 @@ botonesCarrito.forEach(function (boton) {
 
 });
 
+
+tipoFormulario.addEventListener("change", function () {
+    if (tipoFormulario.value === "datos") {
+        formularioDatos.classList.remove("d-none");
+        formularioAlimentacion.classList.add("d-none");
+
+    } else {
+    } 
+    if (tipoFormulario.value === "alimentacion"){
+
+        formularioDatos.classList.add("d-none");
+        formularioAlimentacion.classList.remove("d-none");
+
+    }
+
+});
+
 formularioDatosForm.addEventListener("submit",function(evento){
     evento.preventDefault();
     const nombre = campoNombre.value.trim();
@@ -157,11 +195,11 @@ formularioDatosForm.addEventListener("submit",function(evento){
         grasaCorporal ==="" 
     )
     {
-        mensajeResultado.textContent = "Debe completar todos los campos";
-        mensajeResultado.className = "alert alert-danger mt-4";
+        mensajeResultado1.textContent = "Debe completar todos los campos";
+        mensajeResultado1.className = "alert alert-danger mt-4";
         return;
     }
-    mensajeResultado.className = "alert alert-success mt-4";
+    mensajeResultado1.className = "alert alert-success mt-4";
 
     formularioDatosForm.reset();
 });
@@ -182,11 +220,11 @@ formularioAlimentacionForm.addEventListener("submit",function(evento){
         observaciones ===""
     )
     {
-        mensajeResultado.textContent = "Debe completar todos los campos";
-        mensajeResultado.className = "alert alert-danger mt-4";
+        mensajeResultado2.textContent = "Debe completar todos los campos";
+        mensajeResultado2.className = "alert alert-danger mt-4";
         return;
     }
-    mensajeResultado.className = "alert alert-success mt-4";
+    mensajeResultado2.className = "alert alert-success mt-4";
 
     formularioAlimentacionForm.reset();
 });
