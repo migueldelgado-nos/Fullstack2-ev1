@@ -1,4 +1,3 @@
-
 // VALIDACIÓN REGISTRO DE USUARIO
 
 const formRegistro = document.getElementById("formRegistro");
@@ -45,7 +44,6 @@ if (formRegistro) {
 
         if (
             !correo.endsWith("@duoc.cl") &&
-            !correo.endsWith("@profesor.duoc.cl") &&
             !correo.endsWith("@gmail.com")
         ) {
             alert("El correo debe terminar en @duoc.cl, @profesor.duoc.cl o @gmail.com");
@@ -77,56 +75,42 @@ if (formRegistro) {
             return;
         }
 
-        alert("Registro realizado correctamente");
+        const mensajeExito = document.getElementById("mensajeExito");
+
+        mensajeExito.textContent = "Registro realizado correctamente";
+
+        formRegistro.reset();
 
     });
 
 }
 
+// CARRITO DE COMPRAS
 
-// VALIDACIÓN AGENDAR CITA
+const botonesCarrito = document.querySelectorAll(".agregar-carrito");
 
-const formCita = document.getElementById("formCita");
+const cantidadCarrito = document.getElementById("cantidadCarrito");
+const totalCarrito = document.getElementById("totalCarrito");
 
-if (formCita) {
+let cantidad = 0;
+let total = 0;
 
-    formCita.addEventListener("submit", function (event) {
+botonesCarrito.forEach(function (boton) {
 
-        event.preventDefault();
+    boton.addEventListener("click", function () {
 
-        const servicio = document.getElementById("servicio").value;
-        const nutricionista = document.getElementById("nutricionista").value;
-        const fecha = document.getElementById("fecha").value;
-        const hora = document.getElementById("hora").value;
-        const motivo = document.getElementById("motivo").value.trim();
+        const nombre = boton.dataset.nombre;
+        const precio = Number(boton.dataset.precio);
 
-        if (servicio === "Seleccionar") {
-            alert("Debe seleccionar un tipo de atención");
-            return;
-        }
+        cantidad = cantidad + 1;
+        total = total + precio;
 
-        if (nutricionista === "Seleccionar") {
-            alert("Debe seleccionar un nutricionista");
-            return;
-        }
+        cantidadCarrito.textContent = cantidad;
 
-        if (fecha === "") {
-            alert("Debe seleccionar una fecha");
-            return;
-        }
+        totalCarrito.textContent = total.toLocaleString("es-CL");
 
-        if (hora === "") {
-            alert("Debe seleccionar una hora");
-            return;
-        }
-
-        if (motivo === "") {
-            alert("Debe ingresar el motivo de la consulta");
-            return;
-        }
-
-        alert("Cita agendada correctamente");
+        console.log(nombre + " agregado al carrito");
 
     });
 
-}
+});
