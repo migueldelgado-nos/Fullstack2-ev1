@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en">
   <head>
@@ -44,40 +45,101 @@
                 </div>
             </div>
         </nav>
+=======
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Clínica Nutricional NutriVida</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Clínica Nutricional NutriVida</h1>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+            <a href="registro_de_usuario.html">Registrarse</a>
+        </nav>
+
+>>>>>>> 262f796 (Actualizacion de index, registro, estilos y validaciones)
     </header>
 
 
-    <!-- PRESENTACIÓN -->
-    <main class="container">
+    <main>
 
-        <section class="row">
-            <div class="col">
-                <h2>Tu salud, nuestra prioridad</h2>
-                <p>
-                    Atención nutricional personalizada para ayudarte
-                    a alcanzar tus objetivos.
-                </p>
+        <!-- INICIO -->
+        <section id="inicio">
 
-                <button class="btn btn-primary">
-                    Agendar consulta
-                </button>
-            </div>
+            <h2>Bienvenido a NutriVida</h2>
+
+            <p>
+                NutriVida es una clínica nutricional enfocada en entregar
+                atención personalizada a personas con distintos objetivos
+                de salud y alimentación.
+            </p>
+
+            <p>
+                Nuestro equipo acompaña a los pacientes mediante consultas,
+                controles, evaluaciones y planes nutricionales adaptados a
+                sus necesidades.
+            </p>
+
+            <img
+                src="img/nutricion.jpg"
+                alt="Atención nutricional"
+                class="img-fluid">
+
         </section>
+
+
+        <!-- CARRITO -->
+        <div class="carrito-resumen">
+
+            <h3>Carrito</h3>
+
+            <p>
+                Productos agregados:
+                <span id="cantidadCarrito">0</span>
+            </p>
+
+            <p>
+                Total: $
+                <span id="totalCarrito">0</span>
+            </p>
+
+        </div>
 
 
         <!-- SERVICIOS -->
-        <section class="row">
-            <div class="col">
-                <h2>Servicios nutricionales</h2>
-            </div>
-        </section>
+        <section id="servicios">
 
-        <section class="row">
+            <h2>Nuestros servicios</h2>
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
+            <p>
+                Contamos con diferentes tipos de atención para apoyar
+                el bienestar y seguimiento nutricional de nuestros pacientes.
+            </p>
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
                         <h3>Primera consulta nutricional</h3>
+<<<<<<< HEAD
                         <p>Descripción del servicio.</p>
                         <a href="registro_de_usuario.html" class="btn btn-primary">
                             Agendar consulta
@@ -85,11 +147,35 @@
                     </div>
                 </div>
             </div>
+=======
+>>>>>>> 262f796 (Actualizacion de index, registro, estilos y validaciones)
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
+                        <p>
+                            Evaluación inicial, antropometría y diseño
+                            del primer plan alimenticio.
+                        </p>
+
+                        <p>
+                            <strong>$35.000</strong>
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-success agregar-carrito"
+                            data-nombre="Primera consulta nutricional"
+                            data-precio="35000">
+
+                            Agregar al carrito
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
                         <h3>Control nutricional</h3>
+<<<<<<< HEAD
                         <p>Seguimiento del tratamiento nutricional.</p>
                         <a href="registro_de_usuario.html" class="btn btn-secondary">
                             Ver servicio
@@ -109,11 +195,35 @@
                     </div>
                 </div>
             </div>
+=======
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
+                        <p>
+                            Seguimiento mensual de indicadores y ajuste
+                            del plan alimenticio vigente.
+                        </p>
+
+                        <p>
+                            <strong>$25.000</strong>
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-success agregar-carrito"
+                            data-nombre="Control nutricional"
+                            data-precio="25000">
+
+                            Agregar al carrito
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+>>>>>>> 262f796 (Actualizacion de index, registro, estilos y validaciones)
+
                         <h3>Teleconsulta nutricional</h3>
+<<<<<<< HEAD
                         <p>Consulta nutricional a distancia.</p>
                         <a href="registro_de_usuario.html" class="btn btn-secondary">
                             Ver servicio
@@ -130,53 +240,173 @@
                         <a href="registro_de_usuario.html" class="btn btn-secondary">
                             Ver servicio
                         </a>
+=======
+
+                        <p>
+                            Consulta de seguimiento mediante videollamada
+                            para pacientes con atención presencial previa.
+                        </p>
+
+                        <p>
+                            <strong>$20.000</strong>
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-success agregar-carrito"
+                            data-nombre="Teleconsulta nutricional"
+                            data-precio="20000">
+
+                            Agregar al carrito
+
+                        </button>
+
+>>>>>>> 262f796 (Actualizacion de index, registro, estilos y validaciones)
                     </div>
+
                 </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <h3>Plan pérdida de peso</h3>
+
+                        <p>
+                            Incluye consulta, control, plan alimenticio
+                            personalizado y seguimiento.
+                        </p>
+
+                        <p>
+                            <strong>Desde $65.000</strong>
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-success agregar-carrito"
+                            data-nombre="Plan pérdida de peso"
+                            data-precio="65000">
+
+                            Agregar al carrito
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <h3>Nutrición deportiva</h3>
+
+                        <p>
+                            Plan orientado a deportistas y personas
+                            con actividad física frecuente.
+                        </p>
+
+                        <p>
+                            <strong>$70.000</strong>
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-success agregar-carrito"
+                            data-nombre="Nutrición deportiva"
+                            data-precio="70000">
+
+                            Agregar al carrito
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+
+                        <h3>Antropometría completa</h3>
+
+                        <p>
+                            Medición de peso, talla, IMC, circunferencias
+                            y porcentaje de grasa corporal.
+                        </p>
+
+                        <p>
+                            <strong>$18.000</strong>
+                        </p>
+
+                        <button
+                            type="button"
+                            class="btn btn-success agregar-carrito"
+                            data-nombre="Antropometría completa"
+                            data-precio="18000">
+
+                            Agregar al carrito
+
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </section>
 
 
-        <!-- INFORMACIÓN -->
-        <section class="row">
-            <div class="col">
-                <h2>¿Por qué elegirnos?</h2>
-                <p>Información sobre la clínica.</p>
-            </div>
+        <!-- NOSOTROS -->
+        <section id="nosotros">
 
-            <div class="col">
-                <h2>Profesionales</h2>
-                <p>Información sobre los nutricionistas.</p>
-            </div>
+            <h2>Sobre NutriVida</h2>
+
+            <p>
+                NutriVida fue fundada en 2016 en Temuco y cuenta con
+                profesionales especializados en distintas áreas de la nutrición.
+            </p>
+
+            <p>
+                La clínica atiende pacientes que buscan mejorar su alimentación,
+                controlar enfermedades metabólicas, mejorar su rendimiento
+                deportivo o seguir una alimentación vegetariana o vegana.
+            </p>
+
         </section>
 
 
         <!-- CONTACTO -->
-        <section class="row">
-            <div class="col">
-                <h2>Contacto</h2>
-                <p>Información de contacto de la clínica.</p>
-                <button class="btn btn-primary">
-                    Contactarnos
-                </button>
-            </div>
+        <section id="contacto">
+
+            <h2>Contacto</h2>
+
+            <p>
+                Clínica Nutricional NutriVida
+            </p>
+
+            <p>
+                Temuco, Región de La Araucanía
+            </p>
+
+            <p>
+                Si deseas comenzar tu atención con nosotros,
+                puedes registrarte directamente en nuestra página.
+            </p>
+
         </section>
 
     </main>
 
 
-    <!-- PIE DE PÁGINA -->
-    <footer class="container">
-        <div class="row">
-            <div class="col">
-                <p>Clínica Nutricional</p>
-                <p>© 2026 Todos los derechos reservados.</p>
-            </div>
-        </div>
+    <footer>
+
+        <p>
+            &copy; 2026 Clínica Nutricional NutriVida
+        </p>
+
     </footer>
 
+
+    <!-- JAVASCRIPT DEL CARRITO -->
+    <script src="js/validaciones2.js"></script>
+
 </body>
+
 </html>
-
-
-

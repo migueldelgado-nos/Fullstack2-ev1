@@ -1,76 +1,231 @@
+/* ESTILOS GENERALES */
 
-/* ESTILOS PACIENTE */
-
-.pagina-paciente section {
-    margin-top: 30px;
-    margin-bottom: 30px;
+* {
+    box-sizing: border-box;
 }
 
-.pagina-paciente nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #3A7D44;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222222;
+    background-color: #FAFAFA;
+    line-height: 1.6;
 }
 
-.pagina-paciente nav a:hover {
-    text-decoration: underline;
-}
 
-.pagina-paciente footer {
-    margin-top: 40px;
-    padding: 20px;
+/* HEADER */
+
+header {
+    padding: 30px 20px;
     text-align: center;
     background-color: #F1F7F2;
+    border-bottom: 2px solid #3A7D44;
 }
 
-.pagina-paciente header .row {
-    position: relative;
+header h1 {
+    color: #3A7D44;
+    margin-bottom: 15px;
+    font-size: 2.4rem;
 }
 
-.pagina-paciente header .row .col:first-child {
-    flex: 0 0 100%;
+
+/* NAVEGACIÓN */
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    display: inline-block;
+    margin: 0 8px;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #3A7D44;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background-color: #3A7D44;
+    color: #FFFFFF;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+section {
+    margin-top: 55px;
+    margin-bottom: 55px;
     text-align: center;
 }
 
-.pagina-paciente header .text-end {
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: auto;
+section h2 {
+    color: #3A7D44;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 
-/* ESTILOS REGISTRO */
+/* SECCIÓN INICIO */
 
-.pagina-registro section {
-    margin-top: 30px;
-    margin-bottom: 30px;
+#inicio {
+    background-color: #F1F7F2;
+    padding: 45px 35px;
+    border-radius: 14px;
 }
+
+#inicio p {
+    max-width: 800px;
+    margin: 0 auto 15px;
+    font-size: 1.05rem;
+}
+
+#inicio img {
+    max-width: 700px;
+    width: 100%;
+    margin: 25px auto 0;
+    border-radius: 12px;
+}
+
+
+/* SERVICIOS */
+
+#servicios > p {
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+#servicios .row {
+    margin-bottom: 20px;
+}
+
+#servicios .col-md-4 {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+}
+
+#servicios .col-md-4:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.12);
+}
+
+#servicios h3 {
+    color: #3A7D44;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+#servicios strong {
+    color: #3A7D44;
+    font-size: 1.15rem;
+}
+
+
+/* NOSOTROS */
+
+#nosotros {
+    background-color: #F1F7F2;
+    padding: 35px;
+    border-radius: 12px;
+}
+
+#nosotros p {
+    max-width: 850px;
+    margin: 0 auto 15px;
+}
+
+
+/* CONTACTO */
+
+#contacto {
+    padding: 35px;
+    border-top: 2px solid #3A7D44;
+}
+
+#contacto p {
+    margin-bottom: 10px;
+}
+
+
+/* BOTONES */
+
+.btn-primary,
+.btn-success {
+    background-color: #3A7D44;
+    border-color: #3A7D44;
+    padding: 10px 20px;
+    border-radius: 7px;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+    background-color: #2F6637;
+    border-color: #2F6637;
+}
+
+
+/* REGISTRO */
 
 .pagina-registro form {
     max-width: 700px;
     margin: 0 auto;
     text-align: left;
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-.pagina-registro nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #3A7D44;
+.pagina-registro .form-label {
+    font-weight: bold;
 }
 
-.pagina-registro nav a:hover {
-    text-decoration: underline;
+.pagina-registro .form-control,
+.pagina-registro .form-select {
+    margin-bottom: 5px;
 }
 
-.pagina-registro footer {
-    margin-top: 40px;
-    padding: 20px;
+.pagina-registro .form-control:focus,
+.pagina-registro .form-select:focus {
+    border-color: #3A7D44;
+    box-shadow: 0 0 0 0.2rem rgba(58, 125, 68, 0.15);
+}
+
+
+/* MENSAJE DE REGISTRO CORRECTO */
+
+.mensaje-exito {
+    color: #2F7D32;
+    font-weight: bold;
+    margin-top: 15px;
+    text-align: center;
+}
+
+
+/* FOOTER */
+
+footer {
+    margin-top: 50px;
+    padding: 25px;
     text-align: center;
     background-color: #F1F7F2;
+    border-top: 1px solid #D8E5DA;
 }
 
 
+<<<<<<< HEAD
 
 
 *{
@@ -141,3 +296,66 @@ main{
     }
 }
 
+=======
+/* RESPONSIVE - TELÉFONO */
+
+@media (max-width: 767px) {
+
+    header {
+        padding: 20px 15px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    main {
+        padding: 15px;
+    }
+
+    section {
+        margin-top: 35px;
+        margin-bottom: 35px;
+    }
+
+    section h2 {
+        font-size: 1.7rem;
+    }
+
+    #inicio {
+        padding: 30px 20px;
+    }
+
+    #nosotros {
+        padding: 25px 20px;
+    }
+
+    #contacto {
+        padding: 25px 20px;
+    }
+
+    #servicios .col-md-4 {
+        margin-bottom: 20px;
+    }
+
+    .pagina-registro form {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+
+/* RESPONSIVE - TABLET Y ESCRITORIO */
+
+@media (min-width: 768px) {
+
+    nav a {
+        display: inline-block;
+    }
+}
+>>>>>>> 262f796 (Actualizacion de index, registro, estilos y validaciones)
