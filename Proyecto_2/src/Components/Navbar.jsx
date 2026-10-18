@@ -33,6 +33,21 @@ function Navbar() {
                     >
                         Login
                     </Link>
+
+                    <Link
+                        className="btn btn-outline-light me-2"
+                        to="/registro"
+                    >
+                        Registro
+                    </Link>
+
+                    <Link
+                        className="btn btn-outline-light me-2"
+                        to="/administracion"
+                    >
+                        Administracion
+                    </Link>
+
                 </div>
 
             </div>
