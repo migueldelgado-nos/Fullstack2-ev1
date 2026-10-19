@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 
 function DetalleProducto() {
 
-    const { id } = useParams() 
+    const { id } = useParams()
 
     const productos = {
         1: 'Notebook Lenovo',

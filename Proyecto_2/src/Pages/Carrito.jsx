@@ -5,24 +5,21 @@ import "./Carrito.css";
 const productosIniciales = [
   {
     id: 1,
-    nombre: "Audífonos inalámbricos",
-    precio: 49990,
+    nombre: "Primera consulta nutricional",
+    precio: 35000,
     cantidad: 1,
-    imagen: "https://placehold.co/100x100?text=Audifonos",
   },
   {
     id: 2,
-    nombre: "Smartwatch",
-    precio: 79990,
-    cantidad: 2,
-    imagen: "https://placehold.co/100x100?text=Smartwatch",
+    nombre: "Control nutricional",
+    precio: 25000,
+    cantidad: 1,
   },
   {
     id: 3,
-    nombre: "Mochila urbana",
-    precio: 29990,
+    nombre: "Teleconsulta nutricional",
+    precio: 20000,
     cantidad: 1,
-    imagen: "https://placehold.co/100x100?text=Mochila",
   },
 ];
 
@@ -34,9 +31,9 @@ function Carrito() {
       actuales.map((producto) =>
         producto.id === id
           ? {
-              ...producto,
-              cantidad: Math.max(1, producto.cantidad + cambio),
-            }
+            ...producto,
+            cantidad: Math.max(1, producto.cantidad + cambio),
+          }
           : producto
       )
     );
@@ -65,7 +62,7 @@ function Carrito() {
     <main className="carrito">
       <header className="carrito-header">
         <h1>Carro de compras</h1>
-        <p>Revisa tus productos antes de finalizar la compra.</p>
+        <p>Revisa tus servicios antes de finalizar la compra.</p>
       </header>
 
       <div className="carrito-layout">
@@ -73,45 +70,19 @@ function Carrito() {
           {productos.length === 0 ? (
             <div className="carrito-vacio">
               <h2>Tu carro está vacío</h2>
-              <p>Agrega productos para comenzar tu compra.</p>
+              <p>Agrega servicios para comenzar tu compra.</p>
               <Link to="/">Volver a la tienda</Link>
             </div>
           ) : (
             productos.map((producto) => (
               <article className="producto" key={producto.id}>
-                <img
-                  src={producto.imagen}
-                  alt={producto.nombre}
-                />
-
                 <div className="producto-info">
                   <h2>{producto.nombre}</h2>
-                  <p>{formatoPrecio(producto.precio)}</p>
-                </div>
-
-                <div className="cantidad">
-                  <button
-                    className="btn btn-danger me-2"
-                    onClick={() => cambiarCantidad(producto.id, -1)}
-                    aria-label="Disminuir cantidad"
-                  >
-                    -
-                  </button>
-
-                  <span>{producto.cantidad}</span>
-
-                  <button
-                    className="btn btn-success"
-                    onClick={() => cambiarCantidad(producto.id, 1)}
-                    aria-label="Aumentar cantidad"
-                  >
-                    +
-                  </button>
                 </div>
 
                 <strong className="subtotal">
                   {formatoPrecio(
-                    producto.precio * producto.cantidad
+                    producto.precio
                   )}
                 </strong>
 
@@ -131,18 +102,13 @@ function Carrito() {
           <h2>Resumen del pedido</h2>
 
           <div className="resumen-linea">
-            <span>Productos</span>
+            <span>Servicios</span>
             <span>
               {productos.reduce(
                 (suma, producto) => suma + producto.cantidad,
                 0
               )}
             </span>
-          </div>
-
-          <div className="resumen-linea">
-            <span>Envío</span>
-            <span>Gratis</span>
           </div>
 
           <hr />

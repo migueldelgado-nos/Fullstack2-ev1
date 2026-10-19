@@ -9,7 +9,7 @@ function Navbar() {
                     className="navbar-brand text-white"
                     to="/"
                 >
-                    Tienda Fullstack
+                    Clinica Nutricional NutriVida
                 </Link>
 
                 <div>

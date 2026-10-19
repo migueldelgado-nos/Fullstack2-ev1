@@ -19,45 +19,45 @@ function App() {
 
       <Navbar />
 
-        <Routes>
+      <Routes>
 
-          <Route
-            path="/"
-            element={<Inicio />}
-          />
+        <Route
+          path="/"
+          element={<Inicio />}
+        />
 
-          <Route
-            path="/productos"
-            element={<Producto />}
-          />
+        <Route
+          path="/productos"
+          element={<Producto />}
+        />
 
-          <Route 
-            path="/producto/:id"
-            element={<DetalleProducto />}
-          />
+        <Route
+          path="/producto/:id"
+          element={<DetalleProducto />}
+        />
 
-          <Route
-            path="/login"
-            element={<Login />}
-          />
+        <Route
+          path="/login"
+          element={<Login />}
+        />
 
-          <Route
-            path="/registro"
-            element={<Registro />}
-          />
+        <Route
+          path="/registro"
+          element={<Registro />}
+        />
 
-          <Route
-            path="/administracion"
-            element={<Administracion />}
-          />
+        <Route
+          path="/administracion"
+          element={<Administracion />}
+        />
 
-          <Route
-            path="/carrito"
-            element={<Carrito />}>
+        <Route
+          path="/carrito"
+          element={<Carrito />}>
 
-          </Route>
+        </Route>
 
-        </Routes>
+      </Routes>
 
     </BrowserRouter>
   )

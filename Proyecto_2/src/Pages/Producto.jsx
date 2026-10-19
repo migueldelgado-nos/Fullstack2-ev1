@@ -35,18 +35,42 @@ function Producto() {
                 <div className="col-12 col-md-6 col-lg-4">
                     <ProductoComp
                         id="2"
-                        nombre="Mouse Logitech"
-                        precio={0}
+                        nombre="Control nutricional"
+                        precio={25000}
                     />
                 </div>
 
                 <div className="col-12 col-md-6 col-lg-4">
                     <ProductoComp
                         id="3"
-                        nombre="Teclado Redragon"
-                        precio={0}
+                        nombre="Teleconsulta nutricional"
+                        precio={20000}
                     />
                 </div>
+                <div className="col-12 col-md-6 col-lg-4">
+                    <ProductoComp
+                        id="4"
+                        nombre="Plan perdida de peso"
+                        precio={20000}
+                    />
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-4">
+                    <ProductoComp
+                        id="5"
+                        nombre="Nutricion Deportiva"
+                        precio={20000}
+                    />
+                </div>
+
+                <div className="col-12 col-md-6 col-lg-4">
+                    <ProductoComp
+                        id="6"
+                        nombre="Antropometri completa"
+                        precio={20000}
+                    />
+                </div>
+
 
             </div>
 
