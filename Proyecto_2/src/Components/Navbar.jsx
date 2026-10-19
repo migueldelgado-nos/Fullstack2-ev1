@@ -48,6 +48,13 @@ function Navbar() {
                         Administracion
                     </Link>
 
+                    <Link
+                        className='btn btn-outline-light me-2'
+                        to='/carrito'
+                    >
+                        Carrito
+                    </Link>
+
                 </div>
 
             </div>

@@ -24,26 +24,27 @@ function Producto() {
             <div className="row g-4">
 
                 <div className="col-12 col-md-6 col-lg-4">
-                    <Producto
+                    <ProductoComp
                         id="1"
-                        nombre="Notebook Lenovo"
-                        precio="599.990"
+                        nombre="Primera consulta nutricional"
+                        descripcion="Evaluacion inicial, antropometria y diseño del primer plan de alimentacion"
+                        precio={35000}
                     />
                 </div>
 
                 <div className="col-12 col-md-6 col-lg-4">
-                    <Producto
+                    <ProductoComp
                         id="2"
                         nombre="Mouse Logitech"
-                        precio="29.990"
+                        precio={0}
                     />
                 </div>
 
                 <div className="col-12 col-md-6 col-lg-4">
-                    <Producto
+                    <ProductoComp
                         id="3"
                         nombre="Teclado Redragon"
-                        precio="49.990"
+                        precio={0}
                     />
                 </div>
 

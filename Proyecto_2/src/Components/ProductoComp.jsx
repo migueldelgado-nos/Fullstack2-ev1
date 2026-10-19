@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-function ProductoComp({ id, nombre, precio }) {
+function ProductoComp({ id, nombre, precio,descripcion }) {
 
     const [stock, setStock] = useState(() => {
         const stockGuardado = localStorage.getItem(nombre)
@@ -29,14 +29,18 @@ function ProductoComp({ id, nombre, precio }) {
                     {nombre}
                 </h5>
 
+                <p className='card-text'>
+                    {descripcion}
+                </p>
+
                 <p className="card-text">
-                    Precio: ${precio}
+                    {precio.toLocaleString("es-CL", {
+                        style: "currency",
+                        currency: "CLP",
+                        maximumFractionDigits: 0,
+                    })}
                 </p>
-
-                <p>
-                    Stock disponible: {stock}
-                </p>
-
+                <div>
                 <button
                     className="btn btn-danger me-2"
                     onClick={disminuirStock}
@@ -50,7 +54,7 @@ function ProductoComp({ id, nombre, precio }) {
                 >
                     +
                 </button>
-
+                </div>
                 <Link
                     to={`/producto/${id}`}
                     className="btn btn-primary ms-2"
