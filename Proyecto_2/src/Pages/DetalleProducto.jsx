@@ -15,7 +15,7 @@ function DetalleProducto() {
     return (
         <div className="container mt-4">
 
-            <h1>Detalle del Producto</h1>
+            <h1>Detalle del servicio</h1>
 
             <p>ID: {id}</p>
 
