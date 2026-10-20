@@ -60,11 +60,15 @@ function Administracion() {
 
                 <div className="mb-3">
 
-                    <label className="form-label">
+                    <label
+                        className="form-label"
+                        htmlFor="nombreServicio"
+                    >
                         Nombre del servicio
                     </label>
 
                     <input
+                        id="nombreServicio"
                         type="text"
                         className="form-control"
                         value={nombre}
@@ -76,11 +80,15 @@ function Administracion() {
 
                 <div className="mb-3">
 
-                    <label className="form-label">
+                    <label
+                        className="form-label"
+                        htmlFor="precioServicio"
+                    >
                         Precio
                     </label>
 
                     <input
+                        id="precioServicio"
                         type="number"
                         className="form-control"
                         value={precio}

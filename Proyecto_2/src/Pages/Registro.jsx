@@ -43,15 +43,19 @@ function Registro() {
 
             <h1>Registro de Usuario</h1>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} noValidate>
 
                 <div className="mb-3">
 
-                    <label className="form-label">
+                    <label
+                        className="form-label"
+                        htmlFor="nombre"
+                    >
                         Nombre
                     </label>
 
                     <input
+                        id="nombre"
                         type="text"
                         className="form-control"
                         value={nombre}
@@ -62,11 +66,15 @@ function Registro() {
 
                 <div className="mb-3">
 
-                    <label className="form-label">
+                    <label
+                        className="form-label"
+                        htmlFor="email"
+                    >
                         Correo electrónico
                     </label>
 
                     <input
+                        id="email"
                         type="email"
                         className="form-control"
                         value={email}
@@ -77,11 +85,15 @@ function Registro() {
 
                 <div className="mb-3">
 
-                    <label className="form-label">
+                    <label
+                        className="form-label"
+                        htmlFor="password"
+                    >
                         Contraseña
                     </label>
 
                     <input
+                        id="password"
                         type="password"
                         className="form-control"
                         value={password}

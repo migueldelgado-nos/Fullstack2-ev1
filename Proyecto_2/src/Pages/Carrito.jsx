@@ -1,49 +1,14 @@
-import { useState } from "react";
+import { useCarrito } from "../Context/CarritoContext";
 import { Link } from "react-router-dom";
 import "./Carrito.css";
 
-const productosIniciales = [
-  {
-    id: 1,
-    nombre: "Primera consulta nutricional",
-    precio: 35000,
-    cantidad: 1,
-  },
-  {
-    id: 2,
-    nombre: "Control nutricional",
-    precio: 25000,
-    cantidad: 1,
-  },
-  {
-    id: 3,
-    nombre: "Teleconsulta nutricional",
-    precio: 20000,
-    cantidad: 1,
-  },
-];
-
 function Carrito() {
-  const [productos, setProductos] = useState(productosIniciales);
 
-  const cambiarCantidad = (id, cambio) => {
-    setProductos((actuales) =>
-      actuales.map((producto) =>
-        producto.id === id
-          ? {
-            ...producto,
-            cantidad: Math.max(1, producto.cantidad + cambio),
-          }
-          : producto
-      )
-    );
-  };
-
-  const eliminarProducto = (id) => {
-    setProductos((actuales) =>
-      actuales.filter((producto) => producto.id !== id)
-    );
-  };
+  const {
+    productos,
+    cambiarCantidad,
+    eliminarProducto
+  } = useCarrito();
 
   const total = productos.reduce(
     (suma, producto) =>
@@ -77,14 +42,35 @@ function Carrito() {
             productos.map((producto) => (
               <article className="producto" key={producto.id}>
                 <div className="producto-info">
-                  <h2>{producto.nombre}</h2>
+                <h2>{producto.nombre}</h2>
+
+                <div className="cantidad">
+
+                  <button
+                    onClick={() => cambiarCantidad(producto.id, -1)}
+                  >
+                    -
+                  </button>
+
+                  <span>
+                    {producto.cantidad}
+                  </span>
+
+                  <button
+                    onClick={() => cambiarCantidad(producto.id, 1)}
+                  >
+                    +
+                  </button>
+
                 </div>
 
-                <strong className="subtotal">
-                  {formatoPrecio(
-                    producto.precio
-                  )}
-                </strong>
+              </div>
+
+              <strong className="subtotal">
+                {formatoPrecio(
+                  producto.precio * producto.cantidad
+                )}
+              </strong>
 
                 <button
                   className="eliminar"
