@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCarrito } from '../Context/CarritoContext'
 
 function ProductoComp({ id, nombre, precio, descripcion }) {
+
+    const { agregarProducto } = useCarrito()
 
     const [stock, setStock] = useState(() => {
         const stockGuardado = localStorage.getItem(nombre)
@@ -19,6 +22,15 @@ function ProductoComp({ id, nombre, precio, descripcion }) {
         if (stock > 0) {
             setStock(stock - 1)
         }
+    }
+
+    const agregarAlCarrito = () => {
+        agregarProducto({
+            id,
+            nombre,
+            precio,
+            descripcion
+        })
     }
 
     return (
@@ -47,6 +59,13 @@ function ProductoComp({ id, nombre, precio, descripcion }) {
                 >
                     Ver detalle
                 </Link>
+
+                <button
+                    className="btn btn-success mt-2"
+                    onClick={agregarAlCarrito}
+                >
+                    Agregar al carrito
+                </button>
 
 
             </div>
