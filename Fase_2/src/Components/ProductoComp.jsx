@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useCarrito } from '../Context/CarritoContext'
+import { useCarrito } from '../Context/useCarrito'
 
 function ProductoComp({ id, nombre, precio, descripcion }) {
 
     const { agregarProducto } = useCarrito()
 
-    const [stock, setStock] = useState(() => {
+    const [stock] = useState(() => {
         const stockGuardado = localStorage.getItem(nombre)
 
         return stockGuardado !== null ? Number(stockGuardado) : 5 //operador ternario
@@ -17,12 +17,6 @@ function ProductoComp({ id, nombre, precio, descripcion }) {
         localStorage.setItem(nombre, stock)
     }, [stock, nombre])
 
-
-    const disminuirStock = () => {
-        if (stock > 0) {
-            setStock(stock - 1)
-        }
-    }
 
     const agregarAlCarrito = () => {
         agregarProducto({
@@ -35,17 +29,17 @@ function ProductoComp({ id, nombre, precio, descripcion }) {
 
     return (
         <div className="card h-100">
-            <div className="card-body">
+            <div className="card-body d-flex flex-column">
 
                 <h5 className="card-title">
                     {nombre}
                 </h5>
 
-                <p className='card-text'>
+                <p className="card-text descripcion">
                     {descripcion}
                 </p>
 
-                <p className="card-text">
+                <p className="card-text precio">
                     {precio.toLocaleString("es-CL", {
                         style: "currency",
                         currency: "CLP",
@@ -53,20 +47,23 @@ function ProductoComp({ id, nombre, precio, descripcion }) {
                     })}
                 </p>
 
-                <Link
-                    to={`/producto/${id}`}
-                    className="btn btn-primary ms-2"
-                >
-                    Ver detalle
-                </Link>
+                <div className="d-flex flex-wrap gap-2 justify-content-center mt-auto">
 
-                <button
-                    className="btn btn-success mt-2"
-                    onClick={agregarAlCarrito}
-                >
-                    Agregar al carrito
-                </button>
+                    <Link
+                        to={`/producto/${id}`}
+                        className="btn btn-primary"
+                    >
+                        Ver detalle
+                    </Link>
 
+                    <button
+                        className="btn btn-success"
+                        onClick={agregarAlCarrito}
+                    >
+                        Agregar al carrito
+                    </button>
+
+                </div>
 
             </div>
         </div>

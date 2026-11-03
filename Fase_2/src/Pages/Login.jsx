@@ -27,19 +27,23 @@ function Login() {
     }
 
     return (
-        <div className="container mt-4">
+        <section className="pagina-registro">
 
-            <h1>Iniciar Sesión</h1>
+            <h2>Iniciar Sesión</h2>
 
             <form onSubmit={handleSubmit}>
 
                 <div className="mb-3">
 
-                    <label className="form-label">
+                    <label
+                        className="form-label"
+                        htmlFor="loginEmail"
+                    >
                         Correo electrónico
                     </label>
 
                     <input
+                        id="loginEmail"
                         type="text"
                         className="form-control"
                         value={email}
@@ -50,11 +54,15 @@ function Login() {
 
                 <div className="mb-3">
 
-                    <label className="form-label">
+                    <label
+                        className="form-label"
+                        htmlFor="loginPassword"
+                    >
                         Contraseña
                     </label>
 
                     <input
+                        id="loginPassword"
                         type="password"
                         className="form-control"
                         value={password}
@@ -78,7 +86,7 @@ function Login() {
 
             </form>
 
-        </div>
+        </section>
     )
 }
 

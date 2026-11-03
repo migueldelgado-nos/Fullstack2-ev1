@@ -39,9 +39,9 @@ function Registro() {
     }
 
     return (
-        <div className="container mt-4">
+        <section className="pagina-registro">
 
-            <h1>Registro de Usuario</h1>
+            <h2>Registro de Usuario</h2>
 
             <form onSubmit={handleSubmit} noValidate>
 
@@ -123,7 +123,7 @@ function Registro() {
 
             </form>
 
-        </div>
+        </section>
     )
 }
 

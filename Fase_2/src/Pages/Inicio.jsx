@@ -1,7 +1,7 @@
 function Inicio() {
 
     return (
-        <main>
+        <>
             <section id="inicio">
 
                 <h2>Bienvenido a NutriVida</h2>
@@ -18,6 +18,7 @@ function Inicio() {
                     sus necesidades.
                 </p>
             </section>
+
             <section id="nosotros">
 
                 <h2>Sobre NutriVida</h2>
@@ -34,6 +35,7 @@ function Inicio() {
                 </p>
 
             </section>
+
             <section id="contacto">
 
                 <h2>Contacto</h2>
@@ -52,10 +54,7 @@ function Inicio() {
                 </p>
 
             </section>
-            <footer>
-                <p>© 2026 Clínica Nutricional NutriVida</p>
-            </footer>
-        </main>
+        </>
     )
 }
 

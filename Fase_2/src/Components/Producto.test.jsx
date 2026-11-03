@@ -1,91 +1,94 @@
-import { render, screen } from '@testing-library/react'
-import { describe, test, expect,beforeEach } from 'vitest'
-import { MemoryRouter } from 'react-router-dom'
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, test } from 'vitest'
 import ProductoComp from './ProductoComp'
-import { CarritoProvider } from '../Context/CarritoContext'
+import { useCarrito } from '../Context/useCarrito'
+import { renderConCarrito } from '../test/utils'
 
-beforeEach(() => {
-    localStorage.clear()
-})
+const producto = {
+    id: '1',
+    nombre: 'Primera consulta nutricional',
+    precio: 35000,
+    descripcion: 'Evaluación nutricional inicial'
+}
+
+function ContadorCarrito() {
+    const { productos } = useCarrito()
+
+    return <p>Productos en carrito: {productos.length}</p>
+}
 
 describe('Componente Producto', () => {
 
-    test('muestra el nombre del producto', () => {
+    test('muestra el nombre, precio y descripción', () => {
 
-        render(
-            <CarritoProvider>
-                <MemoryRouter>
-                    <ProductoComp
-                        id="1"
-                        nombre="Primera consulta nutricional"
-                        precio={35000}
-                        descripcion="Evaluación nutricional"
-                    />
-                </MemoryRouter>
-            </CarritoProvider>
-        )
+        renderConCarrito(<ProductoComp {...producto} />)
+
         expect(
-            screen.getByText('Primera consulta nutricional')
+            screen.getByRole('heading', {
+                name: 'Primera consulta nutricional'
+            })
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('Evaluación nutricional inicial')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByText('$35.000')
         ).toBeInTheDocument()
     })
-})
 
-test('muestra el precio del producto', () => {
-    render(
-        <CarritoProvider>
-            <MemoryRouter>
-                <ProductoComp
-                    id="1"
-                    nombre="Primera consulta nutricional"
-                    precio={35000}
-                    descripcion="Evaluación nutricional"
-                />
-            </MemoryRouter>
-        </CarritoProvider>
-    )
-    expect(
-        screen.getByText('$35.000')
-    ).toBeInTheDocument()
-})
+    test('el enlace de detalle apunta al producto', () => {
 
-test('muestra la descripcion del producto', () => {
+        renderConCarrito(<ProductoComp {...producto} />)
 
-    render(
-        <CarritoProvider>
-            <MemoryRouter>
-                <ProductoComp
-                    id="1"
-                    nombre="Primera consulta nutricional"
-                    precio={35000}
-                    descripcion="Evaluación nutricional"
-                />
-            </MemoryRouter>
-        </CarritoProvider>
-    )
+        expect(
+            screen.getByRole('link', { name: 'Ver detalle' })
+        ).toHaveAttribute('href', '/producto/1')
+    })
 
-    expect(
-        screen.getByText('Evaluación nutricional')
-    ).toBeInTheDocument()
-})
+    test('agrega el producto al carrito', async () => {
 
-test('muestra el boton agregar al carrito', () => {
+        const user = userEvent.setup()
 
-    render(
-        <CarritoProvider>
-            <MemoryRouter>
-                <ProductoComp
-                    id="1"
-                    nombre="Primera consulta nutricional"
-                    precio={35000}
-                    descripcion="Evaluación nutricional"
-                />
-            </MemoryRouter>
-        </CarritoProvider>
-    )
+        renderConCarrito(
+            <>
+                <ProductoComp {...producto} />
+                <ContadorCarrito />
+            </>
+        )
 
-    expect(
-        screen.getByRole('button', {
-            name: 'Agregar al carrito'
-        })
-    ).toBeInTheDocument()
+        expect(
+            screen.getByText('Productos en carrito: 0')
+        ).toBeInTheDocument()
+
+        await user.click(
+            screen.getByRole('button', { name: 'Agregar al carrito' })
+        )
+
+        expect(
+            screen.getByText('Productos en carrito: 1')
+        ).toBeInTheDocument()
+    })
+
+    test('guarda el stock inicial de 5 en localStorage', () => {
+
+        renderConCarrito(<ProductoComp {...producto} />)
+
+        expect(
+            localStorage.getItem('Primera consulta nutricional')
+        ).toBe('5')
+    })
+
+    test('respeta el stock guardado en localStorage', () => {
+
+        localStorage.setItem('Primera consulta nutricional', '3')
+
+        renderConCarrito(<ProductoComp {...producto} />)
+
+        expect(
+            localStorage.getItem('Primera consulta nutricional')
+        ).toBe('3')
+    })
 })

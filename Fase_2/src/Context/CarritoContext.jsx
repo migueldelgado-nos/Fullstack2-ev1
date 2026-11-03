@@ -1,6 +1,5 @@
-import { createContext, useContext, useState } from "react";
-
-const CarritoContext = createContext();
+import { useState } from "react";
+import { CarritoContext } from "./carritoContext";
 
 export function CarritoProvider({ children }) {
     const [productos, setProductos] = useState([]);
@@ -54,8 +53,4 @@ export function CarritoProvider({ children }) {
             {children}
         </CarritoContext.Provider>
     );
-}
-
-export function useCarrito() {
-    return useContext(CarritoContext);
 }
