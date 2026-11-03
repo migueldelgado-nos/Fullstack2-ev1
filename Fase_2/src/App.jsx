@@ -20,44 +20,52 @@ function App() {
 
         <Navbar />
 
-        <Routes>
+        <main>
 
-          <Route
-            path="/"
-            element={<Inicio />}
-          />
+          <Routes>
 
-          <Route
-            path="/productos"
-            element={<Producto />}
-          />
+            <Route
+              path="/"
+              element={<Inicio />}
+            />
 
-          <Route
-            path="/producto/:id"
-            element={<DetalleProducto />}
-          />
+            <Route
+              path="/productos"
+              element={<Producto />}
+            />
 
-          <Route
-            path="/login"
-            element={<Login />}
-          />
+            <Route
+              path="/producto/:id"
+              element={<DetalleProducto />}
+            />
 
-          <Route
-            path="/registro"
-            element={<Registro />}
-          />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
 
-          <Route
-            path="/administracion"
-            element={<Administracion />}
-          />
+            <Route
+              path="/registro"
+              element={<Registro />}
+            />
 
-          <Route
-            path="/carrito"
-            element={<Carrito />}
-          />
+            <Route
+              path="/administracion"
+              element={<Administracion />}
+            />
 
-        </Routes>
+            <Route
+              path="/carrito"
+              element={<Carrito />}
+            />
+
+          </Routes>
+
+        </main>
+
+        <footer>
+          <p>© 2026 Clínica Nutricional NutriVida</p>
+        </footer>
 
       </BrowserRouter>
     </CarritoProvider>

@@ -47,9 +47,9 @@ function Administracion() {
 
 
     return (
-        <div className="container mt-4">
+        <section id="administracion" className="pagina-registro">
 
-            <h1>Administración</h1>
+            <h2>Administración</h2>
 
 
             <h3 className="mt-4">
@@ -167,7 +167,7 @@ function Administracion() {
 
             </div>
 
-        </div>
+        </section>
     )
 }
 

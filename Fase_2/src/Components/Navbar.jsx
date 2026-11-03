@@ -1,64 +1,41 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 function Navbar() {
+
+    const claseEnlace = ({ isActive }) => (isActive ? 'active' : undefined)
+
     return (
-        <nav className="navbar navbar-expand-lg bg-dark">
-            <div className="container">
+        <header>
 
-                <Link
-                    className="navbar-brand text-white"
-                    to="/"
-                >
-                    Clinica Nutricional NutriVida
-                </Link>
+            <h1>Clínica Nutricional NutriVida</h1>
 
-                <div>
-                    <Link
-                        className="btn btn-outline-light me-2"
-                        to="/"
-                    >
-                        Inicio
-                    </Link>
+            <nav>
+                <NavLink to="/" end className={claseEnlace}>
+                    Inicio
+                </NavLink>
 
-                    <Link
-                        className="btn btn-outline-light me-2"
-                        to="/productos"
-                    >
-                        Productos
-                    </Link>
+                <NavLink to="/productos" className={claseEnlace}>
+                    Productos
+                </NavLink>
 
-                    <Link
-                        className="btn btn-outline-light"
-                        to="/login"
-                    >
-                        Login
-                    </Link>
+                <NavLink to="/login" className={claseEnlace}>
+                    Login
+                </NavLink>
 
-                    <Link
-                        className="btn btn-outline-light me-2"
-                        to="/registro"
-                    >
-                        Registro
-                    </Link>
+                <NavLink to="/registro" className={claseEnlace}>
+                    Registrarse
+                </NavLink>
 
-                    <Link
-                        className="btn btn-outline-light me-2"
-                        to="/administracion"
-                    >
-                        Administracion
-                    </Link>
+                <NavLink to="/administracion" className={claseEnlace}>
+                    Administración
+                </NavLink>
 
-                    <Link
-                        className='btn btn-outline-light me-2'
-                        to='/carrito'
-                    >
-                        Carrito
-                    </Link>
+                <NavLink to="/carrito" className={claseEnlace}>
+                    Carrito
+                </NavLink>
+            </nav>
 
-                </div>
-
-            </div>
-        </nav>
+        </header>
     )
 }
 

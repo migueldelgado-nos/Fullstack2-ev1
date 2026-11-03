@@ -1,0 +1,361 @@
+/* ===== ESTILOS PORTADOS DE FASE 1 ===== */
+
+/* HEADER */
+
+header {
+  padding: 30px 20px;
+  text-align: center;
+  background-color: #F1F7F2;
+  border-bottom: 2px solid #3A7D44;
+}
+
+header h1 {
+  color: #3A7D44;
+  margin: 0 0 15px;
+  font-size: 2.4rem;
+  line-height: 1.2;
+}
+
+/* NAVEGACIÓN */
+
+nav {
+  margin-top: 15px;
+}
+
+nav a {
+  display: inline-block;
+  margin: 0 8px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #3A7D44;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  background-color: #3A7D44;
+  color: #FFFFFF;
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+  width: 100%;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px;
+  flex: 1;
+}
+
+main > section {
+  margin-top: 55px;
+  margin-bottom: 55px;
+  text-align: center;
+}
+
+main > section h2 {
+  color: #3A7D44;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+main > section h3 {
+  color: #3A7D44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+/* SECCIÓN INICIO */
+
+#inicio {
+  background-color: #F1F7F2;
+  padding: 45px 35px;
+  border-radius: 14px;
+}
+
+#inicio p {
+  max-width: 800px;
+  margin: 0 auto 15px;
+  font-size: 1.05rem;
+}
+
+#inicio img {
+  max-width: 700px;
+  width: 100%;
+  margin: 25px auto 0;
+  border-radius: 12px;
+}
+
+/* SERVICIOS / PRODUCTOS */
+
+#servicios > p {
+  max-width: 800px;
+  margin: 0 auto 30px;
+}
+
+#servicios .row {
+  margin-bottom: 20px;
+}
+
+#servicios .col-md-4 {
+  margin-bottom: 20px;
+}
+
+/* TARJETAS */
+
+.card {
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.12);
+}
+
+.card-body {
+  padding: 25px;
+}
+
+.card-title {
+  color: #3A7D44;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+.card-text {
+  color: #222222;
+}
+
+.card .precio {
+  color: #3A7D44;
+  font-size: 1.15rem;
+  font-weight: bold;
+}
+
+/* DETALLE DE PRODUCTO */
+
+#detalle strong {
+  color: #3A7D44;
+  font-size: 1.15rem;
+}
+
+/* NOSOTROS */
+
+#nosotros {
+  background-color: #F1F7F2;
+  padding: 35px;
+  border-radius: 12px;
+}
+
+#nosotros p {
+  max-width: 850px;
+  margin: 0 auto 15px;
+}
+
+/* CONTACTO */
+
+#contacto {
+  padding: 35px;
+  border-top: 2px solid #3A7D44;
+}
+
+#contacto p {
+  margin-bottom: 10px;
+}
+
+/* BOTONES */
+
+.btn-primary,
+.btn-success {
+  --bs-btn-bg: #3A7D44;
+  --bs-btn-border-color: #3A7D44;
+  --bs-btn-hover-bg: #2F6637;
+  --bs-btn-hover-border-color: #2F6637;
+  --bs-btn-active-bg: #2F6637;
+  --bs-btn-active-border-color: #2F6637;
+  --bs-btn-disabled-bg: #3A7D44;
+  --bs-btn-disabled-border-color: #3A7D44;
+  background-color: #3A7D44;
+  border-color: #3A7D44;
+  padding: 10px 20px;
+  border-radius: 7px;
+}
+
+.btn-primary:hover,
+.btn-success:hover {
+  background-color: #2F6637;
+  border-color: #2F6637;
+}
+
+.btn-secondary {
+  --bs-btn-bg: #6B7A6E;
+  --bs-btn-border-color: #6B7A6E;
+  --bs-btn-hover-bg: #556357;
+  --bs-btn-hover-border-color: #556357;
+  --bs-btn-active-bg: #556357;
+  --bs-btn-active-border-color: #556357;
+  background-color: #6B7A6E;
+  border-color: #6B7A6E;
+  border-radius: 7px;
+}
+
+.btn-danger {
+  --bs-btn-bg: #A33A3A;
+  --bs-btn-border-color: #A33A3A;
+  --bs-btn-hover-bg: #8A2F2F;
+  --bs-btn-hover-border-color: #8A2F2F;
+  --bs-btn-active-bg: #8A2F2F;
+  --bs-btn-active-border-color: #8A2F2F;
+  background-color: #A33A3A;
+  border-color: #A33A3A;
+  border-radius: 7px;
+}
+
+.btn-outline-secondary {
+  --bs-btn-color: #3A7D44;
+  --bs-btn-border-color: #3A7D44;
+  --bs-btn-hover-bg: #3A7D44;
+  --bs-btn-hover-border-color: #3A7D44;
+  color: #3A7D44;
+  border-color: #3A7D44;
+}
+
+/* FORMULARIOS */
+
+.pagina-registro form {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: left;
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.pagina-registro .form-control,
+.pagina-registro .form-select {
+  margin-bottom: 5px;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #3A7D44;
+  box-shadow: 0 0 0 0.2rem rgba(58, 125, 68, 0.15);
+}
+
+/* MENSAJE DE REGISTRO CORRECTO */
+
+.mensaje-exito {
+  color: #2F7D32;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* TABLAS */
+
+.table {
+  text-align: left;
+  vertical-align: middle;
+  background-color: #FFFFFF;
+}
+
+.table > thead {
+  background-color: #F1F7F2;
+}
+
+.table > thead th {
+  color: #3A7D44;
+  font-weight: bold;
+  border-bottom: 2px solid #3A7D44;
+}
+
+.table > tbody > tr > td {
+  color: #222222;
+}
+
+/* FOOTER */
+
+footer {
+  margin-top: 50px;
+  padding: 25px;
+  text-align: center;
+  background-color: #F1F7F2;
+  border-top: 1px solid #D8E5DA;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* RESPONSIVE - TELÉFONO */
+
+@media (max-width: 767px) {
+
+  header {
+    padding: 20px 15px;
+  }
+
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  nav a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  main {
+    padding: 15px;
+  }
+
+  main > section {
+    margin-top: 35px;
+    margin-bottom: 35px;
+  }
+
+  main > section h2 {
+    font-size: 1.7rem;
+  }
+
+  #inicio {
+    padding: 30px 20px;
+  }
+
+  #nosotros {
+    padding: 25px 20px;
+  }
+
+  #contacto {
+    padding: 25px 20px;
+  }
+
+  #servicios .col-md-4 {
+    margin-bottom: 20px;
+  }
+
+  .pagina-registro form {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+/* RESPONSIVE - TABLET Y ESCRITORIO */
+
+@media (min-width: 768px) {
+
+  nav a {
+    display: inline-block;
+  }
+}

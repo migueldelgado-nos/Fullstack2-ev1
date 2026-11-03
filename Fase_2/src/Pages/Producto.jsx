@@ -11,15 +11,20 @@ function Producto() {
     const categoria = parametros.get('categoria')
 
     return (
-        <div className="container mt-4">
+        <section id="servicios">
 
-            <h1 className="text-center mb-4">
-                Nuestros Productos
-            </h1>
+            <h2>Nuestros productos</h2>
 
             <p>
-                Categoría seleccionada: {categoria}
+                Contamos con diferentes servicios para apoyar el bienestar
+                y el seguimiento nutricional de nuestros pacientes.
             </p>
+
+            {categoria && (
+                <p>
+                    Categoría seleccionada: {categoria}
+                </p>
+            )}
 
             <div className="row g-4">
 
@@ -74,7 +79,7 @@ function Producto() {
 
             </div>
 
-        </div>
+        </section>
     )
 }
 

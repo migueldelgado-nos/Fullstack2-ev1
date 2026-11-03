@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 function DetalleProducto() {
 
@@ -46,26 +46,36 @@ function DetalleProducto() {
 
     if (!producto) {
         return (
-            <div className="container mt-4">
-                <h1>Servicio no encontrado</h1>
-            </div>
+            <section id="detalle">
+                <h2>Servicio no encontrado</h2>
+
+                <Link to="/productos" className="btn btn-primary">
+                    Volver a productos
+                </Link>
+            </section>
         )
     }
 
     return (
-        <div className="container mt-4">
+        <section id="detalle">
 
-            <h1>Detalle del servicio</h1>
+            <h2>Detalle del servicio</h2>
 
             <h3>{producto.nombre}</h3>
 
             <p>{producto.descripcion}</p>
 
             <p>
-                Precio: ${producto.precio.toLocaleString('es-CL')}
+                <strong>
+                    Precio: ${producto.precio.toLocaleString('es-CL')}
+                </strong>
             </p>
 
-        </div>
+            <Link to="/productos" className="btn btn-primary">
+                Volver a productos
+            </Link>
+
+        </section>
     )
 }
 

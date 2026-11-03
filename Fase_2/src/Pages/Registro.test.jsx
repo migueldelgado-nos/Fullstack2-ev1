@@ -22,6 +22,28 @@ describe('Componente Registro', () => {
         ).toBeInTheDocument()
     })
 
+    test('muestra error si el nombre tiene solo espacios', async () => {
+
+        const user = userEvent.setup()
+
+        render(<Registro />)
+
+        await user.type(
+            screen.getByLabelText('Nombre'),
+            '   '
+        )
+
+        await user.click(
+            screen.getByRole('button', {
+                name: 'Registrarse'
+            })
+        )
+
+        expect(
+            screen.getByText('Debe ingresar su nombre')
+        ).toBeInTheDocument()
+    })
+
     test('muestra error si el correo no es valido', async () => {
 
         const user = userEvent.setup()
@@ -83,4 +105,47 @@ describe('Componente Registro', () => {
         ).toBeInTheDocument()
     })
 
+    test('registra el usuario y limpia el formulario', async () => {
+
+        const user = userEvent.setup()
+
+        render(<Registro />)
+
+        await user.type(
+            screen.getByLabelText('Nombre'),
+            'Miguel'
+        )
+
+        await user.type(
+            screen.getByLabelText('Correo electrónico'),
+            'miguel@correo.cl'
+        )
+
+        await user.type(
+            screen.getByLabelText('Contraseña'),
+            '1234'
+        )
+
+        await user.click(
+            screen.getByRole('button', {
+                name: 'Registrarse'
+            })
+        )
+
+        expect(
+            screen.getByText('Usuario registrado correctamente')
+        ).toBeInTheDocument()
+
+        expect(
+            screen.getByLabelText('Nombre')
+        ).toHaveValue('')
+
+        expect(
+            screen.getByLabelText('Correo electrónico')
+        ).toHaveValue('')
+
+        expect(
+            screen.getByLabelText('Contraseña')
+        ).toHaveValue('')
+    })
 })

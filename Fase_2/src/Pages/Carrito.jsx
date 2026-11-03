@@ -1,4 +1,4 @@
-import { useCarrito } from "../Context/CarritoContext";
+import { useCarrito } from "../Context/useCarrito";
 import { Link } from "react-router-dom";
 import "./Carrito.css";
 
@@ -24,11 +24,11 @@ function Carrito() {
     });
 
   return (
-    <main className="carrito">
-      <header className="carrito-header">
-        <h1>Carro de compras</h1>
+    <section className="carrito">
+      <div className="carrito-header">
+        <h2>Carro de compras</h2>
         <p>Revisa tus servicios antes de finalizar la compra.</p>
-      </header>
+      </div>
 
       <div className="carrito-layout">
         <section className="productos">
@@ -117,7 +117,7 @@ function Carrito() {
           </Link>
         </aside>
       </div>
-    </main>
+    </section>
   );
 }
 
