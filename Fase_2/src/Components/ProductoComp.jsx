@@ -50,7 +50,7 @@ function ProductoComp({ id, nombre, precio, descripcion }) {
                 <div className="d-flex flex-wrap gap-2 justify-content-center mt-auto">
 
                     <Link
-                        to={`/producto/${id}`}
+                        to={`/servicio/${id}`}
                         className="btn btn-primary"
                     >
                         Ver detalle

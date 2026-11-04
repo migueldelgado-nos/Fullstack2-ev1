@@ -44,15 +44,15 @@ const productos = [
 
 function renderDetalle(id) {
     return renderConRuta(<DetalleProducto />, {
-        route: `/producto/${id}`,
-        path: '/producto/:id'
+        route: `/servicio/${id}`,
+        path: '/servicio/:id'
     })
 }
 
 describe('Página DetalleProducto', () => {
 
     test.each(productos)(
-        'muestra el detalle del producto $id',
+        'muestra el detalle del servicio $id',
         ({ id, nombre, descripcion, precio }) => {
 
             renderDetalle(id)
@@ -75,16 +75,16 @@ describe('Página DetalleProducto', () => {
         }
     )
 
-    test('el enlace vuelve a la lista de productos', () => {
+    test('el enlace vuelve a la lista de servicios', () => {
 
         renderDetalle(1)
 
         expect(
-            screen.getByRole('link', { name: 'Volver a productos' })
-        ).toHaveAttribute('href', '/productos')
+            screen.getByRole('link', { name: 'Volver a servicios' })
+        ).toHaveAttribute('href', '/servicios')
     })
 
-    test('muestra un mensaje si el producto no existe', () => {
+    test('muestra un mensaje si el servicio no existe', () => {
 
         renderDetalle(99)
 
@@ -93,7 +93,7 @@ describe('Página DetalleProducto', () => {
         ).toBeInTheDocument()
 
         expect(
-            screen.getByRole('link', { name: 'Volver a productos' })
-        ).toHaveAttribute('href', '/productos')
+            screen.getByRole('link', { name: 'Volver a servicios' })
+        ).toHaveAttribute('href', '/servicios')
     })
 })

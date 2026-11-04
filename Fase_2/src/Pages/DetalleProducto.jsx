@@ -49,8 +49,8 @@ function DetalleProducto() {
             <section id="detalle">
                 <h2>Servicio no encontrado</h2>
 
-                <Link to="/productos" className="btn btn-primary">
-                    Volver a productos
+                <Link to="/servicios" className="btn btn-primary">
+                    Volver a servicios
                 </Link>
             </section>
         )
@@ -71,8 +71,8 @@ function DetalleProducto() {
                 </strong>
             </p>
 
-            <Link to="/productos" className="btn btn-primary">
-                Volver a productos
+            <Link to="/servicios" className="btn btn-primary">
+                Volver a servicios
             </Link>
 
         </section>

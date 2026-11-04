@@ -9,7 +9,7 @@ Repositorio de una clínica nutricional desarrollado en **dos fases independient
 
 ![Fase 1](https://img.shields.io/badge/Fase%201-HTML%20%7C%20CSS%20%7C%20JavaScript-0b7285?style=flat-square)
 ![Fase 2](https://img.shields.io/badge/Fase%202-React%20%2B%20Vite-2f9e44?style=flat-square)
-![Pruebas](https://img.shields.io/badge/pruebas-56%20passing-brightgreen?style=flat-square)
+![Pruebas](https://img.shields.io/badge/pruebas-51%20passing-brightgreen?style=flat-square)
 
 > **Importante:** `Fase_2` es la fase que sigue avanzando. Sus páginas, componentes, estilos, pruebas y funcionalidades pueden cambiar entre commits. `Fase_1` se mantiene como referencia histórica y ya no recibe nuevas características.
 
@@ -20,13 +20,13 @@ Repositorio de una clínica nutricional desarrollado en **dos fases independient
 | Dimensión | `Fase_1` | `Fase_2` |
 |---|---|---|
 | **Tipo de aplicación** | Sitio estático multipágina | Single Page Application (SPA) |
-| **Navegación** | Enlaces entre archivos `.html` y anclas | React Router con rutas (`/productos`, `/carrito`, etc.) |
+| **Navegación** | Enlaces entre archivos `.html` y anclas | React Router con rutas (`/servicios`, `/carrito`, etc.) |
 | **Interactividad** | JavaScript vanilla con `addEventListener` | Estado de React, hooks y Context API |
 | **Estilos** | Bootstrap 5 por CDN + CSS propio | Bootstrap 5 instalado + CSS propio |
 | **Formularios** | Validación con `alert()` | Validación con estado y mensajes en pantalla |
-| **Carrito** | Contador global de cantidad y total | Carrito completo con productos, cantidades, subtotales y total |
+| **Carrito** | Contador global de cantidad y total | Carrito con servicios únicos, descripción, valor y total |
 | **Datos** | Fijos en el HTML | Definidos en componentes y estado de React |
-| **Pruebas** | Verificación manual | 56 pruebas automatizadas con Vitest + Testing Library |
+| **Pruebas** | Verificación manual | 51 pruebas automatizadas con Vitest + Testing Library |
 | **Build** | No requiere build | Vite (`dev`, `build`, `preview`) |
 | **Ejecución** | Abrir `index.html` o servidor estático | `npm install` + `npm run dev` |
 
@@ -121,14 +121,14 @@ Reconstrucción del sitio como una aplicación SPA con React. Esta fase **sigue 
 ## Funcionalidades implementadas
 
 - **Inicio:** presentación de la clínica, historia y datos de contacto.
-- **Productos:** catálogo de seis servicios en tarjetas reutilizables.
-- **Detalle de producto:** vista individual por `id` con nombre, descripción y precio.
-- **Carrito:** agregar productos, aumentar/disminuir cantidades, eliminar, subtotales y total en CLP.
+- **Servicios:** catálogo de seis servicios en tarjetas reutilizables.
+- **Detalle de servicio:** vista individual por `id` con nombre, descripción y precio.
+- **Carrito:** agregar servicios (sin duplicados), ver nombre y descripción, eliminar, valor por servicio y total en CLP.
 - **Administración:** alta y eliminación de servicios en una tabla.
 - **Registro:** validación de nombre, correo y contraseña con mensajes en pantalla.
 - **Login:** validación de correo y contraseña.
 - **Navegación:** barra con enlaces activos según la ruta y pie de página.
-- **Persistencia básica:** stock inicial por producto guardado en `localStorage`.
+- **Persistencia básica:** stock inicial por servicio guardado en `localStorage`.
 - **Diseño:** estilos alineados con la identidad visual de la clínica.
 
 ## Rutas de la aplicación
@@ -136,8 +136,8 @@ Reconstrucción del sitio como una aplicación SPA con React. Esta fase **sigue 
 | Ruta | Página | Descripción |
 |---|---|---|
 | `/` | `Inicio` | Presentación, historia y contacto |
-| `/productos` | `Producto` | Catálogo de servicios |
-| `/producto/:id` | `DetalleProducto` | Detalle de un servicio |
+| `/servicios` | `Producto` | Catálogo de servicios |
+| `/servicio/:id` | `DetalleProducto` | Detalle de un servicio |
 | `/login` | `Login` | Inicio de sesión |
 | `/registro` | `Registro` | Registro de usuario |
 | `/administracion` | `Administracion` | Gestión de servicios |
@@ -205,18 +205,18 @@ Abrir la URL que muestra Vite, normalmente <http://localhost:5173>.
 
 ## Pruebas automatizadas
 
-La fase cuenta con **56 pruebas en 11 archivos**, usando Vitest como runner y Testing Library para renderizar y consultar la interfaz como lo haría un usuario. No se usan snapshots ni pruebas E2E.
+La fase cuenta con **51 pruebas en 11 archivos**, usando Vitest como runner y Testing Library para renderizar y consultar la interfaz como lo haría un usuario. No se usan snapshots ni pruebas E2E.
 
 | Área | Archivo | Pruebas |
 |---|---|---:|
-| Contexto del carrito | `Context/CarritoContext.test.jsx` | 10 |
-| Página del carrito | `Pages/Carrito.test.jsx` | 7 |
+| Contexto del carrito | `Context/CarritoContext.test.jsx` | 6 |
+| Página del carrito | `Pages/Carrito.test.jsx` | 6 |
 | Login | `Pages/Login.test.jsx` | 4 |
 | Registro | `Pages/Registro.test.jsx` | 5 |
 | Administración | `Pages/Administracion.test.jsx` | 6 |
-| Tarjeta de producto | `Components/Producto.test.jsx` | 5 |
-| Página de productos | `Pages/Producto.test.jsx` | 4 |
-| Detalle de producto | `Pages/DetalleProducto.test.jsx` | 8 |
+| Tarjeta de servicio | `Components/Producto.test.jsx` | 5 |
+| Página de servicios | `Pages/Producto.test.jsx` | 4 |
+| Detalle de servicio | `Pages/DetalleProducto.test.jsx` | 8 |
 | Inicio | `Pages/Inicio.test.jsx` | 2 |
 | Navegación | `Components/Navbar.test.jsx` | 3 |
 | Aplicación completa | `App.test.jsx` | 2 |
@@ -230,7 +230,7 @@ Resultado esperado:
 
 ```text
 Test Files  11 passed (11)
-Tests       56 passed (56)
+Tests       51 passed (51)
 ```
 
 ## En desarrollo: próximos pasos
@@ -238,7 +238,7 @@ Tests       56 passed (56)
 `Fase_2` continúa modificándose. Algunas líneas de trabajo abiertas son:
 
 - Persistir el carrito en `localStorage` o en un backend.
-- Unificar el catálogo de productos entre `Producto`, `DetalleProducto` y `Administracion`.
+- Unificar el catálogo de servicios entre `Producto`, `DetalleProducto` y `Administracion`.
 - Conectar la administración con el catálogo visible al cliente.
 - Implementar autenticación real y sesiones.
 - Reemplazar las alertas y los `console.log` por flujos de compra reales.
@@ -250,7 +250,7 @@ Tests       56 passed (56)
 
 - El carrito vive en memoria: se pierde al recargar la página.
 - El login y el registro solo validan en el cliente; no hay backend.
-- La administración modifica una lista local que no alimenta al catálogo de productos.
+- La administración modifica una lista local que no alimenta al catálogo de servicios.
 - El botón de finalizar compra solo muestra una alerta.
 - El stock se guarda en `localStorage`, pero todavía no se muestra ni se descuenta en la interfaz.
 

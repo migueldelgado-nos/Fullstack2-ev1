@@ -32,7 +32,7 @@ describe('CarritoContext', () => {
         expect(result.current.productos).toEqual([])
     })
 
-    test('agrega un producto nuevo con cantidad 1', () => {
+    test('agrega un servicio nuevo', () => {
 
         const { result } = renderCarrito()
 
@@ -40,12 +40,10 @@ describe('CarritoContext', () => {
             result.current.agregarProducto(producto)
         })
 
-        expect(result.current.productos).toEqual([
-            { ...producto, cantidad: 1 }
-        ])
+        expect(result.current.productos).toEqual([producto])
     })
 
-    test('incrementa la cantidad si el producto ya existe', () => {
+    test('no duplica un servicio que ya está en el carrito', () => {
 
         const { result } = renderCarrito()
 
@@ -54,12 +52,10 @@ describe('CarritoContext', () => {
             result.current.agregarProducto(producto)
         })
 
-        expect(result.current.productos).toEqual([
-            { ...producto, cantidad: 2 }
-        ])
+        expect(result.current.productos).toEqual([producto])
     })
 
-    test('mantiene separados los productos distintos', () => {
+    test('mantiene separados los servicios distintos', () => {
 
         const { result } = renderCarrito()
 
@@ -68,77 +64,13 @@ describe('CarritoContext', () => {
             result.current.agregarProducto(otroProducto)
         })
 
-        expect(result.current.productos).toHaveLength(2)
         expect(result.current.productos).toEqual([
-            { ...producto, cantidad: 1 },
-            { ...otroProducto, cantidad: 1 }
+            producto,
+            otroProducto
         ])
     })
 
-    test('aumenta la cantidad de un producto', () => {
-
-        const { result } = renderCarrito()
-
-        act(() => {
-            result.current.agregarProducto(producto)
-        })
-
-        act(() => {
-            result.current.cambiarCantidad(producto.id, 1)
-        })
-
-        expect(result.current.productos[0].cantidad).toBe(2)
-    })
-
-    test('disminuye la cantidad de un producto', () => {
-
-        const { result } = renderCarrito()
-
-        act(() => {
-            result.current.agregarProducto(producto)
-            result.current.agregarProducto(producto)
-        })
-
-        act(() => {
-            result.current.cambiarCantidad(producto.id, -1)
-        })
-
-        expect(result.current.productos[0].cantidad).toBe(1)
-    })
-
-    test('no permite que la cantidad baje de 1', () => {
-
-        const { result } = renderCarrito()
-
-        act(() => {
-            result.current.agregarProducto(producto)
-        })
-
-        act(() => {
-            result.current.cambiarCantidad(producto.id, -1)
-        })
-
-        expect(result.current.productos[0].cantidad).toBe(1)
-    })
-
-    test('ignora un id inexistente al cambiar la cantidad', () => {
-
-        const { result } = renderCarrito()
-
-        act(() => {
-            result.current.agregarProducto(producto)
-        })
-
-        act(() => {
-            result.current.cambiarCantidad('999', 1)
-        })
-
-        expect(result.current.productos).toEqual([
-            { ...producto, cantidad: 1 }
-        ])
-    })
-
-    test('elimina el producto indicado', () => {
+    test('elimina el servicio indicado', () => {
 
         const { result } = renderCarrito()
 
@@ -151,9 +83,7 @@ describe('CarritoContext', () => {
             result.current.eliminarProducto(producto.id)
         })
 
-        expect(result.current.productos).toEqual([
-            { ...otroProducto, cantidad: 1 }
-        ])
+        expect(result.current.productos).toEqual([otroProducto])
     })
 
     test('ignora un id inexistente al eliminar', () => {
@@ -168,8 +98,6 @@ describe('CarritoContext', () => {
             result.current.eliminarProducto('999')
         })
 
-        expect(result.current.productos).toEqual([
-            { ...producto, cantidad: 1 }
-        ])
+        expect(result.current.productos).toEqual([producto])
     })
 })

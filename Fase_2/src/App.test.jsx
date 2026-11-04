@@ -28,18 +28,18 @@ describe('App', () => {
         ).toBeInTheDocument()
     })
 
-    test('navega a la página de productos', async () => {
+    test('navega a la página de servicios', async () => {
 
         const user = userEvent.setup()
 
         render(<App />)
 
         await user.click(
-            screen.getByRole('link', { name: 'Productos' })
+            screen.getByRole('link', { name: 'Servicios' })
         )
 
         expect(
-            screen.getByRole('heading', { name: 'Nuestros productos' })
+            screen.getByRole('heading', { name: 'Nuestros servicios' })
         ).toBeInTheDocument()
     })
 })

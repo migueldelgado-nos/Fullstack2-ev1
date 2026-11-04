@@ -6,33 +6,16 @@ export function CarritoProvider({ children }) {
 
     const agregarProducto = (producto) => {
         setProductos((actuales) => {
-            const existente = actuales.find(
+            const existente = actuales.some(
                 (item) => item.id === producto.id
             );
 
             if (existente) {
-                return actuales.map((item) =>
-                    item.id === producto.id
-                        ? { ...item, cantidad: item.cantidad + 1 }
-                        : item
-                );
+                return actuales;
             }
 
-            return [...actuales, { ...producto, cantidad: 1 }];
+            return [...actuales, producto];
         });
-    };
-
-    const cambiarCantidad = (id, cambio) => {
-        setProductos((actuales) =>
-            actuales.map((item) =>
-                item.id === id
-                    ? {
-                        ...item,
-                        cantidad: Math.max(1, item.cantidad + cambio),
-                    }
-                    : item
-            )
-        );
     };
 
     const eliminarProducto = (id) => {
@@ -46,7 +29,6 @@ export function CarritoProvider({ children }) {
             value={{
                 productos,
                 agregarProducto,
-                cambiarCantidad,
                 eliminarProducto,
             }}
         >

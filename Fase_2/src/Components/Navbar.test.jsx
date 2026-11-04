@@ -25,7 +25,7 @@ describe('Componente Navbar', () => {
 
         const enlaces = [
             ['Inicio', '/'],
-            ['Productos', '/productos'],
+            ['Servicios', '/servicios'],
             ['Login', '/login'],
             ['Registrarse', '/registro'],
             ['Administración', '/administracion'],
@@ -50,14 +50,14 @@ describe('Componente Navbar', () => {
 
     test('no marca Inicio como activo en otras rutas', () => {
 
-        renderNavbar('/productos')
+        renderNavbar('/servicios')
 
         expect(
             screen.getByRole('link', { name: 'Inicio' })
         ).not.toHaveClass('active')
 
         expect(
-            screen.getByRole('link', { name: 'Productos' })
+            screen.getByRole('link', { name: 'Servicios' })
         ).toHaveClass('active')
     })
 })

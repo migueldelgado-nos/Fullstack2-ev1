@@ -10,7 +10,7 @@ describe('Página Producto', () => {
         renderConCarrito(<Producto />)
 
         expect(
-            screen.getByRole('heading', { name: 'Nuestros productos' })
+            screen.getByRole('heading', { name: 'Nuestros servicios' })
         ).toBeInTheDocument()
 
         expect(
@@ -51,7 +51,7 @@ describe('Página Producto', () => {
     test('muestra la categoría cuando viene en la URL', () => {
 
         renderConCarrito(<Producto />, {
-            route: '/productos?categoria=deportiva'
+            route: '/servicios?categoria=deportiva'
         })
 
         expect(
