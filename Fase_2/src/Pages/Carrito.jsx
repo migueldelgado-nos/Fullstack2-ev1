@@ -6,13 +6,11 @@ function Carrito() {
 
   const {
     productos,
-    cambiarCantidad,
     eliminarProducto
   } = useCarrito();
 
   const total = productos.reduce(
-    (suma, producto) =>
-      suma + producto.precio * producto.cantidad,
+    (suma, producto) => suma + producto.precio,
     0
   );
 
@@ -41,44 +39,29 @@ function Carrito() {
           ) : (
             productos.map((producto) => (
               <article className="producto" key={producto.id}>
-                <div className="producto-info">
-                <h2>{producto.nombre}</h2>
-
-                <div className="cantidad">
-
-                  <button
-                    onClick={() => cambiarCantidad(producto.id, -1)}
-                  >
-                    -
-                  </button>
-
-                  <span>
-                    {producto.cantidad}
-                  </span>
-
-                  <button
-                    onClick={() => cambiarCantidad(producto.id, 1)}
-                  >
-                    +
-                  </button>
-
+                <div className="producto-nombre">
+                  <h2>{producto.nombre}</h2>
                 </div>
 
-              </div>
+                <div className="producto-descripcion">
+                  {producto.descripcion && (
+                    <p>{producto.descripcion}</p>
+                  )}
+                </div>
 
-              <strong className="subtotal">
-                {formatoPrecio(
-                  producto.precio * producto.cantidad
-                )}
-              </strong>
+                <div className="producto-acciones">
+                  <strong className="subtotal">
+                    {formatoPrecio(producto.precio)}
+                  </strong>
 
-                <button
-                  className="eliminar"
-                  onClick={() => eliminarProducto(producto.id)}
-                  aria-label={`Eliminar ${producto.nombre}`}
-                >
-                  Eliminar
-                </button>
+                  <button
+                    className="eliminar"
+                    onClick={() => eliminarProducto(producto.id)}
+                    aria-label={`Eliminar ${producto.nombre}`}
+                  >
+                    Eliminar
+                  </button>
+                </div>
               </article>
             ))
           )}
@@ -89,12 +72,7 @@ function Carrito() {
 
           <div className="resumen-linea">
             <span>Servicios</span>
-            <span>
-              {productos.reduce(
-                (suma, producto) => suma + producto.cantidad,
-                0
-              )}
-            </span>
+            <span>{productos.length}</span>
           </div>
 
           <hr />

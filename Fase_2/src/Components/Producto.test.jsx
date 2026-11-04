@@ -45,7 +45,7 @@ describe('Componente Producto', () => {
 
         expect(
             screen.getByRole('link', { name: 'Ver detalle' })
-        ).toHaveAttribute('href', '/producto/1')
+        ).toHaveAttribute('href', '/servicio/1')
     })
 
     test('agrega el producto al carrito', async () => {

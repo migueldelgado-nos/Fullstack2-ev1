@@ -14,8 +14,8 @@ function Navbar() {
                     Inicio
                 </NavLink>
 
-                <NavLink to="/productos" className={claseEnlace}>
-                    Productos
+                <NavLink to="/servicios" className={claseEnlace}>
+                    Servicios
                 </NavLink>
 
                 <NavLink to="/login" className={claseEnlace}>

@@ -30,12 +30,12 @@ function App() {
             />
 
             <Route
-              path="/productos"
+              path="/servicios"
               element={<Producto />}
             />
 
             <Route
-              path="/producto/:id"
+              path="/servicio/:id"
               element={<DetalleProducto />}
             />
 

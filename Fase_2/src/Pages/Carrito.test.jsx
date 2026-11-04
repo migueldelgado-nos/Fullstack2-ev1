@@ -8,7 +8,8 @@ import { renderConCarrito } from '../test/utils'
 const producto = {
     id: '1',
     nombre: 'Primera consulta nutricional',
-    precio: 35000
+    precio: 35000,
+    descripcion: 'Evaluación inicial, antropometría y diseño del primer plan de alimentación'
 }
 
 function CarritoConSemilla({ productos = [] }) {
@@ -57,7 +58,7 @@ describe('Página Carrito', () => {
         ).toBeDisabled()
     })
 
-    test('muestra un producto con su subtotal y total', async () => {
+    test('muestra nombre, descripción, valor y total del servicio', async () => {
 
         const user = userEvent.setup()
 
@@ -72,6 +73,10 @@ describe('Página Carrito', () => {
         ).toBeInTheDocument()
 
         expect(
+            screen.getByText(producto.descripcion)
+        ).toBeInTheDocument()
+
+        expect(
             screen.getAllByText('$35.000')
         ).toHaveLength(2)
 
@@ -80,7 +85,7 @@ describe('Página Carrito', () => {
         ).toHaveTextContent('1')
     })
 
-    test('calcula el total según la cantidad', async () => {
+    test('no duplica el servicio si se agrega dos veces', async () => {
 
         const user = userEvent.setup()
 
@@ -89,15 +94,21 @@ describe('Página Carrito', () => {
         await sembrar(user, producto.id, 2)
 
         expect(
-            screen.getAllByText('$70.000')
+            screen.getAllByRole('heading', {
+                name: 'Primera consulta nutricional'
+            })
+        ).toHaveLength(1)
+
+        expect(
+            screen.getAllByText('$35.000')
         ).toHaveLength(2)
 
         expect(
             screen.getByText('Servicios').parentElement
-        ).toHaveTextContent('2')
+        ).toHaveTextContent('1')
     })
 
-    test('el botón + aumenta la cantidad y el total', async () => {
+    test('no muestra controles para modificar la cantidad', async () => {
 
         const user = userEvent.setup()
 
@@ -105,45 +116,16 @@ describe('Página Carrito', () => {
 
         await sembrar(user, producto.id)
 
-        await user.click(
-            screen.getByRole('button', { name: '+' })
-        )
+        expect(
+            screen.queryByRole('button', { name: '+' })
+        ).not.toBeInTheDocument()
 
         expect(
-            screen.getAllByText('$70.000')
-        ).toHaveLength(2)
-
-        expect(
-            screen.getByText('Servicios').parentElement
-        ).toHaveTextContent('2')
+            screen.queryByRole('button', { name: '-' })
+        ).not.toBeInTheDocument()
     })
 
-    test('el botón - disminuye la cantidad sin bajar de 1', async () => {
-
-        const user = userEvent.setup()
-
-        renderConCarrito(<CarritoConSemilla productos={[producto]} />)
-
-        await sembrar(user, producto.id, 2)
-
-        await user.click(
-            screen.getByRole('button', { name: '-' })
-        )
-
-        expect(
-            screen.getByText('Servicios').parentElement
-        ).toHaveTextContent('1')
-
-        await user.click(
-            screen.getByRole('button', { name: '-' })
-        )
-
-        expect(
-            screen.getByText('Servicios').parentElement
-        ).toHaveTextContent('1')
-    })
-
-    test('eliminar un producto deja el carrito vacío', async () => {
+    test('eliminar un servicio deja el carrito vacío', async () => {
 
         const user = userEvent.setup()
 
