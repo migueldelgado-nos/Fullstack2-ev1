@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { CarritoProvider } from './Context/CarritoContext'
+import { tokenExpirado } from './utils/auth'
 
 import Navbar from './Components/Navbar'
 import Inicio from './Pages/Inicio'
@@ -9,8 +10,35 @@ import DetalleProducto from './Pages/DetalleProducto'
 import Registro from './Pages/Registro'
 import Administracion from './Pages/Administracion'
 import Carrito from './Pages/Carrito'
+import Pedidos from './Pages/Pedidos'
 
+function RutaAdmin({ children }) {
 
+  const token = localStorage.getItem('token')
+  const rol = localStorage.getItem('rol')
+
+  if (!token || tokenExpirado(token) || rol !== 'ADMIN') {
+    return <Navigate to="/login" replace />
+  }
+
+  return children
+}
+
+function RutaPedidos({ children }) {
+
+  const token = localStorage.getItem('token')
+  const rol = localStorage.getItem('rol')
+
+  if (
+    !token ||
+    tokenExpirado(token) ||
+    (rol !== 'ADMIN' && rol !== 'VENDEDOR')
+  ) {
+    return <Navigate to="/login" replace />
+  }
+
+  return children
+}
 
 function App() {
 
@@ -51,12 +79,25 @@ function App() {
 
             <Route
               path="/administracion"
-              element={<Administracion />}
+              element={
+                <RutaAdmin>
+                  <Administracion />
+                </RutaAdmin>
+              }
             />
 
             <Route
               path="/carrito"
               element={<Carrito />}
+            />
+
+            <Route
+              path="/pedidos"
+              element={
+                <RutaPedidos>
+                  <Pedidos />
+                </RutaPedidos>
+              }
             />
 
           </Routes>

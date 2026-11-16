@@ -1,4 +1,4 @@
-import { useCarrito } from "../Context/useCarrito";
+import { useCarrito } from '../Context/CarritoContext'
 import { Link } from "react-router-dom";
 import "./Carrito.css";
 
@@ -13,6 +13,59 @@ function Carrito() {
     (suma, producto) => suma + producto.precio,
     0
   );
+
+  const finalizarCompra = async () => {
+
+    const token = localStorage.getItem('token')
+    const usuarioId = localStorage.getItem('usuarioId')
+
+    if (!token || !usuarioId) {
+      alert('Debes iniciar sesión para finalizar la compra')
+      return
+    }
+
+    const boleta = {
+      usuarioId: Number(usuarioId),
+
+      detalles: productos.map((producto) => ({
+        productoId: Number(producto.id),
+        cantidad: producto.cantidad || 1
+      }))
+    }
+
+    try {
+
+      const response = await fetch(
+        'http://localhost:8080/api/v1/boletas',
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+
+          body: JSON.stringify(boleta)
+        }
+      )
+
+      if (!response.ok) {
+        alert('No se pudo generar la boleta')
+        return
+      }
+
+      const data = await response.json()
+
+      alert(
+        `Compra realizada correctamente. Total: ${formatoPrecio(data.total)}`
+      )
+
+    } catch (error) {
+
+      alert('No se pudo conectar con el servidor')
+
+    }
+  }
 
   const formatoPrecio = (precio) =>
     precio.toLocaleString("es-CL", {
@@ -55,11 +108,11 @@ function Carrito() {
                   </strong>
 
                   <button
-                    className="eliminar"
-                    onClick={() => eliminarProducto(producto.id)}
-                    aria-label={`Eliminar ${producto.nombre}`}
+                    className="finalizar"
+                    disabled={productos.length === 0}
+                    onClick={() => alert("Continuar al proceso de compra")}
                   >
-                    Eliminar
+                    Finalizar compra
                   </button>
                 </div>
               </article>
@@ -85,7 +138,7 @@ function Carrito() {
           <button
             className="finalizar"
             disabled={productos.length === 0}
-            onClick={() => alert("Continuar al proceso de compra")}
+            onClick={finalizarCompra}
           >
             Finalizar compra
           </button>

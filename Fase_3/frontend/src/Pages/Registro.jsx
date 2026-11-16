@@ -8,7 +8,7 @@ function Registro() {
     const [mensaje, setMensaje] = useState('')
     const [error, setError] = useState('')
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
 
         event.preventDefault()
 
@@ -30,12 +30,51 @@ function Registro() {
             return
         }
 
-        setError('')
-        setMensaje('Usuario registrado correctamente')
+        try {
 
-        setNombre('')
-        setEmail('')
-        setPassword('')
+            const response = await fetch(
+                'http://localhost:8080/api/v1/auth/registro',
+                {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        email: email,
+                        password: password
+                    })
+                }
+            )
+
+            if (!response.ok) {
+
+                const mensajeError = await response.text()
+
+                setError(
+                    mensajeError ||
+                    'No se pudo registrar el usuario'
+                )
+
+                setMensaje('')
+                return
+            }
+
+            setError('')
+            setMensaje('Usuario registrado correctamente')
+
+            setNombre('')
+            setEmail('')
+            setPassword('')
+
+        } catch (error) {
+
+            setError('No se pudo conectar con el servidor')
+            setMensaje('')
+
+        }
     }
 
     return (
@@ -59,7 +98,9 @@ function Registro() {
                         type="text"
                         className="form-control"
                         value={nombre}
-                        onChange={(event) => setNombre(event.target.value)}
+                        onChange={(event) =>
+                            setNombre(event.target.value)
+                        }
                     />
 
                 </div>
@@ -78,7 +119,9 @@ function Registro() {
                         type="email"
                         className="form-control"
                         value={email}
-                        onChange={(event) => setEmail(event.target.value)}
+                        onChange={(event) =>
+                            setEmail(event.target.value)
+                        }
                     />
 
                 </div>
@@ -97,7 +140,9 @@ function Registro() {
                         type="password"
                         className="form-control"
                         value={password}
-                        onChange={(event) => setPassword(event.target.value)}
+                        onChange={(event) =>
+                            setPassword(event.target.value)
+                        }
                     />
 
                 </div>

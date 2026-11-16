@@ -1,14 +1,50 @@
-import ProductoComp from '../Components/ProductoComp'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import ProductoComp from '../Components/ProductoComp'
 
 function Producto() {
 
+    const [productos, setProductos] = useState([])
+    const [error, setError] = useState('')
 
     const location = useLocation()
-
     const parametros = new URLSearchParams(location.search)
-
     const categoria = parametros.get('categoria')
+
+    useEffect(() => {
+
+        const cargarProductos = async () => {
+
+            const token = localStorage.getItem('token')
+
+            try {
+
+                const response = await fetch(
+                    'http://localhost:8080/api/v1/productos',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                )
+
+                if (!response.ok) {
+                    setError('No se pudieron cargar los servicios')
+                    return
+                }
+
+                const data = await response.json()
+
+                setProductos(data)
+
+            } catch (error) {
+                setError('No se pudo conectar con el servidor')
+            }
+        }
+
+        cargarProductos()
+
+    }, [])
 
     return (
         <section id="servicios">
@@ -26,61 +62,31 @@ function Producto() {
                 </p>
             )}
 
+            {error && (
+                <p className="text-danger">
+                    {error}
+                </p>
+            )}
+
             <div className="row g-4">
 
-                <div className="col-12 col-md-6 col-lg-4">
-                    <ProductoComp
-                        id="1"
-                        nombre="Primera consulta nutricional"
-                        descripcion="Evaluación inicial, antropometría y diseño del primer plan de alimentación"
-                        precio={35000}
-                    />
-                </div>
+                {productos.map((producto) => (
 
-                <div className="col-12 col-md-6 col-lg-4">
-                    <ProductoComp
-                        id="2"
-                        nombre="Control nutricional"
-                        descripcion="Seguimiento del progreso y ajustes al plan de alimentación"
-                        precio={25000}
-                    />
-                </div>
+                    <div
+                        className="col-12 col-md-6 col-lg-4"
+                        key={producto.id}
+                    >
 
-                <div className="col-12 col-md-6 col-lg-4">
-                    <ProductoComp
-                        id="3"
-                        nombre="Teleconsulta nutricional"
-                        descripcion="Consulta nutricional realizada de manera online"
-                        precio={20000}
-                    />
-                </div>
-                <div className="col-12 col-md-6 col-lg-4">
-                    <ProductoComp
-                        id="4"
-                        nombre="Plan perdida de peso"
-                        descripcion="Plan alimenticio personalizado enfocado en la pérdida de peso"
-                        precio={20000}
-                    />
-                </div>
+                        <ProductoComp
+                            id={producto.id}
+                            nombre={producto.nombre}
+                            descripcion={producto.descripcion}
+                            precio={producto.precio}
+                        />
 
-                <div className="col-12 col-md-6 col-lg-4">
-                    <ProductoComp
-                        id="5"
-                        nombre="Nutricion Deportiva"
-                        descripcion="Plan nutricional orientado al rendimiento y actividad física"
-                        precio={20000}
-                    />
-                </div>
+                    </div>
 
-                <div className="col-12 col-md-6 col-lg-4">
-                    <ProductoComp
-                        id="6"
-                        nombre="Antropometri completa"
-                        descripcion="Evaluación de medidas corporales y composición corporal"
-                        precio={20000}
-                    />
-                </div>
-
+                ))}
 
             </div>
 

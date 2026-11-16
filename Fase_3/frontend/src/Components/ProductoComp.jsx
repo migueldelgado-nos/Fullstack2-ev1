@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useCarrito } from '../Context/useCarrito'
+import { useCarrito } from '../Context/CarritoContext'
 
 function ProductoComp({ id, nombre, precio, descripcion }) {
 
