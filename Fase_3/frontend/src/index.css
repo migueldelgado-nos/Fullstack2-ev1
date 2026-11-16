@@ -1,0 +1,64 @@
+/* ===== BASE (equivalente a Fase 1) ===== */
+
+:root {
+  --verde: #3A7D44;
+  --verde-oscuro: #2F6637;
+  --verde-claro: #F1F7F2;
+  --verde-borde: #D8E5DA;
+  --fondo: #FAFAFA;
+  --texto: #222222;
+  --texto-suave: #5A6B5D;
+  --borde: #E0E0E0;
+  --blanco: #FFFFFF;
+
+  --sans: Arial, sans-serif;
+  --heading: Arial, sans-serif;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--texto);
+  background-color: var(--fondo);
+  line-height: 1.6;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading);
+  font-weight: bold;
+  margin-top: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  color: var(--verde);
+}
+
+a:hover {
+  color: var(--verde-oscuro);
+}

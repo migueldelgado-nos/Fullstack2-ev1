@@ -1,0 +1,175 @@
+import { useState } from 'react'
+
+function Registro() {
+
+    const [nombre, setNombre] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [mensaje, setMensaje] = useState('')
+    const [error, setError] = useState('')
+
+    const handleSubmit = async (event) => {
+
+        event.preventDefault()
+
+        if (nombre.trim() === '') {
+            setError('Debe ingresar su nombre')
+            setMensaje('')
+            return
+        }
+
+        if (!email.includes('@')) {
+            setError('El correo electrónico no es válido')
+            setMensaje('')
+            return
+        }
+
+        if (password.length < 4) {
+            setError('La contraseña debe tener al menos 4 caracteres')
+            setMensaje('')
+            return
+        }
+
+        try {
+
+            const response = await fetch(
+                'http://localhost:8080/api/v1/auth/registro',
+                {
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        email: email,
+                        password: password
+                    })
+                }
+            )
+
+            if (!response.ok) {
+
+                const mensajeError = await response.text()
+
+                setError(
+                    mensajeError ||
+                    'No se pudo registrar el usuario'
+                )
+
+                setMensaje('')
+                return
+            }
+
+            setError('')
+            setMensaje('Usuario registrado correctamente')
+
+            setNombre('')
+            setEmail('')
+            setPassword('')
+
+        } catch (error) {
+
+            setError('No se pudo conectar con el servidor')
+            setMensaje('')
+
+        }
+    }
+
+    return (
+        <section className="pagina-registro">
+
+            <h2>Registro de Usuario</h2>
+
+            <form onSubmit={handleSubmit} noValidate>
+
+                <div className="mb-3">
+
+                    <label
+                        className="form-label"
+                        htmlFor="nombre"
+                    >
+                        Nombre
+                    </label>
+
+                    <input
+                        id="nombre"
+                        type="text"
+                        className="form-control"
+                        value={nombre}
+                        onChange={(event) =>
+                            setNombre(event.target.value)
+                        }
+                    />
+
+                </div>
+
+                <div className="mb-3">
+
+                    <label
+                        className="form-label"
+                        htmlFor="email"
+                    >
+                        Correo electrónico
+                    </label>
+
+                    <input
+                        id="email"
+                        type="email"
+                        className="form-control"
+                        value={email}
+                        onChange={(event) =>
+                            setEmail(event.target.value)
+                        }
+                    />
+
+                </div>
+
+                <div className="mb-3">
+
+                    <label
+                        className="form-label"
+                        htmlFor="password"
+                    >
+                        Contraseña
+                    </label>
+
+                    <input
+                        id="password"
+                        type="password"
+                        className="form-control"
+                        value={password}
+                        onChange={(event) =>
+                            setPassword(event.target.value)
+                        }
+                    />
+
+                </div>
+
+                {error && (
+                    <div className="alert alert-danger">
+                        {error}
+                    </div>
+                )}
+
+                {mensaje && (
+                    <div className="alert alert-success">
+                        {mensaje}
+                    </div>
+                )}
+
+                <button
+                    type="submit"
+                    className="btn btn-success"
+                >
+                    Registrarse
+                </button>
+
+            </form>
+
+        </section>
+    )
+}
+
+export default Registro
