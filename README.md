@@ -1,34 +1,37 @@
 # NutriVida — Proyecto Fullstack 2
 
-Repositorio de una clínica nutricional desarrollado en **dos fases independientes**. Cada carpeta conserva su propia estructura, tecnologías y forma de ejecutarse:
+Repositorio de una clínica nutricional desarrollado en **tres fases independientes**. Cada carpeta conserva su propia estructura, tecnologías y forma de ejecutarse:
 
 | Fase | Enfoque | Estado |
 |---|---|---|
 | **`Fase_1/`** | Sitio web estático con HTML, CSS, Bootstrap y JavaScript vanilla | Cerrada — base inicial del proyecto |
-| **`Fase_2/`** | Aplicación SPA con React, Vite, React Router y Context API | **Activa — en desarrollo y modificación continua** |
+| **`Fase_2/`** | Aplicación SPA con React, Vite, React Router y Context API | En desarrollo — base del frontend actual |
+| **`Fase_3/`** | Full stack: React + Spring Boot + MySQL con autenticación JWT | **Activa — evaluación final del proyecto** |
 
 ![Fase 1](https://img.shields.io/badge/Fase%201-HTML%20%7C%20CSS%20%7C%20JavaScript-0b7285?style=flat-square)
 ![Fase 2](https://img.shields.io/badge/Fase%202-React%20%2B%20Vite-2f9e44?style=flat-square)
+![Fase 3](https://img.shields.io/badge/Fase%203-React%20%2B%20Spring%20Boot%20%2B%20MySQL-7048e8?style=flat-square)
 ![Pruebas](https://img.shields.io/badge/pruebas-51%20passing-brightgreen?style=flat-square)
 
-> **Importante:** `Fase_2` es la fase que sigue avanzando. Sus páginas, componentes, estilos, pruebas y funcionalidades pueden cambiar entre commits. `Fase_1` se mantiene como referencia histórica y ya no recibe nuevas características.
+> **Importante:** `Fase_3` es la versión vigente del proyecto: integra el frontend React con un backend real, base de datos y autenticación. `Fase_2` se conserva como la etapa intermedia de SPA y `Fase_1` como referencia histórica. Cada fase puede ejecutarse de forma independiente.
 
 ---
 
 ## Vista rápida: ¿en qué se diferencian?
 
-| Dimensión | `Fase_1` | `Fase_2` |
-|---|---|---|
-| **Tipo de aplicación** | Sitio estático multipágina | Single Page Application (SPA) |
-| **Navegación** | Enlaces entre archivos `.html` y anclas | React Router con rutas (`/servicios`, `/carrito`, etc.) |
-| **Interactividad** | JavaScript vanilla con `addEventListener` | Estado de React, hooks y Context API |
-| **Estilos** | Bootstrap 5 por CDN + CSS propio | Bootstrap 5 instalado + CSS propio |
-| **Formularios** | Validación con `alert()` | Validación con estado y mensajes en pantalla |
-| **Carrito** | Contador global de cantidad y total | Carrito con servicios únicos, descripción, valor y total |
-| **Datos** | Fijos en el HTML | Definidos en componentes y estado de React |
-| **Pruebas** | Verificación manual | 51 pruebas automatizadas con Vitest + Testing Library |
-| **Build** | No requiere build | Vite (`dev`, `build`, `preview`) |
-| **Ejecución** | Abrir `index.html` o servidor estático | `npm install` + `npm run dev` |
+| Dimensión | `Fase_1` | `Fase_2` | `Fase_3` |
+|---|---|---|---|
+| **Tipo de aplicación** | Sitio estático multipágina | Single Page Application (SPA) | Full stack (SPA + API REST + BD) |
+| **Navegación** | Enlaces entre archivos `.html` y anclas | React Router con rutas (`/servicios`, `/carrito`, etc.) | React Router + rutas protegidas por rol |
+| **Interactividad** | JavaScript vanilla con `addEventListener` | Estado de React, hooks y Context API | React + `fetch` a la API de Spring Boot |
+| **Estilos** | Bootstrap 5 por CDN + CSS propio | Bootstrap 5 instalado + CSS propio | Bootstrap 5 + React Bootstrap + CSS propio |
+| **Formularios** | Validación con `alert()` | Validación con estado y mensajes en pantalla | Validación en cliente y en el backend |
+| **Carrito** | Contador global de cantidad y total | Carrito con servicios únicos, descripción, valor y total | Carrito que genera boletas reales en la BD |
+| **Datos** | Fijos en el HTML | Definidos en componentes y estado de React | MySQL + JPA (productos, usuarios, categorías, boletas) |
+| **Autenticación** | No existe | Solo validación de formularios | Spring Security + JWT con roles ADMIN/VENDEDOR/CLIENTE |
+| **Pruebas** | Verificación manual | 51 pruebas automatizadas con Vitest + Testing Library | Pruebas de frontend (Vitest) + prueba de contexto de Spring |
+| **Build** | No requiere build | Vite (`dev`, `build`, `preview`) | Vite (frontend) + Maven (backend) |
+| **Ejecución** | Abrir `index.html` o servidor estático | `npm install` + `npm run dev` | MySQL + `./mvnw spring-boot:run` + `npm run dev` |
 
 ---
 
@@ -99,11 +102,11 @@ Luego abrir <http://localhost:8000>.
 
 ---
 
-# 🟩 Fase_2 — Aplicación React (en evolución)
+# 🟩 Fase_2 — Aplicación React (base del frontend)
 
 **Ruta:** [`Fase_2/`](./Fase_2)
 
-Reconstrucción del sitio como una aplicación SPA con React. Esta fase **sigue avanzando**: se continúa trabajando en la arquitectura de componentes, la experiencia de compra, la administración de servicios, los estilos y la cobertura de pruebas.
+Reconstrucción del sitio como una aplicación SPA con React. Esta fase fue la etapa intermedia del proyecto: aquí se consolidaron la arquitectura de componentes, la experiencia de compra, la administración de servicios, los estilos y la cobertura de pruebas. Su código sirvió de base para el frontend de `Fase_3`.
 
 ## Tecnologías
 
@@ -233,9 +236,9 @@ Test Files  11 passed (11)
 Tests       51 passed (51)
 ```
 
-## En desarrollo: próximos pasos
+## Aspectos que motivaron la siguiente fase
 
-`Fase_2` continúa modificándose. Algunas líneas de trabajo abiertas son:
+Estas necesidades de `Fase_2` motivaron la evolución hacia `Fase_3`:
 
 - Persistir el carrito en `localStorage` o en un backend.
 - Unificar el catálogo de servicios entre `Producto`, `DetalleProducto` y `Administracion`.
@@ -246,6 +249,8 @@ Tests       51 passed (51)
 - Ampliar la cobertura de pruebas y agregar reporte de cobertura.
 - Pulir accesibilidad, estados de carga y manejo de errores.
 
+> En `Fase_3` se implementaron la API, la base de datos, la autenticación JWT, la administración conectada al catálogo y la generación real de boletas. El carrito sigue en memoria y quedan pendientes aspectos como el reporte de cobertura y el reemplazo total de `alert()`/`console.log`.
+
 ## Limitaciones actuales de esta fase
 
 - El carrito vive en memoria: se pierde al recargar la página.
@@ -253,6 +258,203 @@ Tests       51 passed (51)
 - La administración modifica una lista local que no alimenta al catálogo de servicios.
 - El botón de finalizar compra solo muestra una alerta.
 - El stock se guarda en `localStorage`, pero todavía no se muestra ni se descuenta en la interfaz.
+
+---
+
+# 🟪 Fase_3 — Aplicación Full Stack (versión vigente)
+
+**Ruta:** [`Fase_3/`](./Fase_3)
+
+Implementación final de NutriVida como aplicación Full Stack. El frontend React consume una API REST construida con Spring Boot, que persiste los datos en MySQL y protege los recursos con autenticación JWT y roles. Es la fase activa del repositorio.
+
+## Tecnologías
+
+### Frontend (`Fase_3/frontend/`)
+
+| Tecnología | Uso |
+|---|---|
+| React 19 | Componentes y estado |
+| Vite 8 | Servidor de desarrollo y build |
+| React Router DOM 7 | Rutas de la SPA y rutas protegidas |
+| Bootstrap 5 + React Bootstrap | Base visual y componentes |
+| Context API | Estado global del carrito |
+| Vitest 5 + Testing Library | Pruebas automatizadas |
+| ESLint | Análisis estático |
+
+### Backend (`Fase_3/backend/`)
+
+| Tecnología | Uso |
+|---|---|
+| Java 21 | Lenguaje del backend |
+| Spring Boot 4.1.2 | Framework de la API REST |
+| Spring WebMVC | Controladores REST |
+| Spring Data JPA | Persistencia con Hibernate |
+| Spring Security | Autenticación y autorización por roles |
+| JWT (jjwt 0.13.0) | Tokens de sesión stateless |
+| Spring Validation | Validación de datos |
+| Springdoc OpenAPI 3.2.0 | Documentación Swagger UI |
+| MySQL Connector/J | Conexión a la base de datos |
+| Maven Wrapper (`mvnw`) | Build y ejecución del backend |
+
+### Base de datos (`Fase_3/database/`)
+
+MySQL 8 con el script [`nutrivida.sql`](./Fase_3/database/nutrivida.sql), que crea la base de datos `nutrivida`, sus tablas y datos de ejemplo. Tablas principales: `usuario`, `rol` (como enum `ADMIN`, `VENDEDOR`, `CLIENTE`), `categoria`, `producto`, `boleta` y `detalle_boleta`.
+
+Usuarios de ejemplo incluidos en el script:
+
+| Correo | Rol |
+|---|---|
+| `admin@nutrivida.cl` | `ADMIN` |
+| `vendedor@nutrivida.cl` | `VENDEDOR` |
+| `cliente@nutrivida.cl` | `CLIENTE` |
+
+## Estructura
+
+```text
+Fase_3/
+├── frontend/
+│   ├── index.html
+│   ├── package.json
+│   ├── vite.config.js
+│   ├── eslint.config.js
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx
+│       ├── Components/     # Navbar, ProductoComp y pruebas
+│       ├── Context/        # CarritoContext, useCarrito y pruebas
+│       ├── Pages/          # Inicio, Producto, DetalleProducto, Login,
+│       │                   # Registro, Administracion, Carrito, Pedidos
+│       ├── styles/         # estilos.css
+│       ├── utils/auth.js   # Validación de expiración del JWT
+│       └── test/           # utilidades de pruebas
+├── backend/
+│   ├── pom.xml
+│   ├── mvnw
+│   ├── src/main/java/cl/nutrivida/backend/
+│   │   ├── config/         # SecurityConfig (CORS, JWT, reglas por rol)
+│   │   ├── controller/     # Auth, Producto, Categoria, Usuario, Boleta
+│   │   ├── dto/            # LoginRequest, LoginResponse, CrearBoletaRequest...
+│   │   ├── model/          # Usuario, Rol, Producto, Categoria, Boleta, DetalleBoleta
+│   │   ├── repository/     # Repositorios JPA
+│   │   ├── security/       # JwtService y JwtAuthenticationFilter
+│   │   └── service/        # Lógica de negocio
+│   └── src/main/resources/application.properties
+├── database/
+│   └── nutrivida.sql
+└── README.md
+```
+
+## Funcionalidades implementadas
+
+- **Catálogo de servicios:** el frontend obtiene los productos desde `GET /api/v1/productos`.
+- **Detalle de servicio:** vista individual por `id` con nombre, descripción y precio.
+- **Carrito y compra:** `finalizarCompra()` envía un `POST /api/v1/boletas` con el token JWT y crea la boleta con sus detalles en MySQL.
+- **Login real:** `POST /api/v1/auth/login` valida la contraseña con BCrypt y devuelve un JWT; el frontend guarda `token`, `nombre`, `rol` y `usuarioId` en `localStorage`.
+- **Registro real:** `POST /api/v1/auth/registro` crea usuarios con rol `CLIENTE` y contraseña codificada.
+- **Administración de productos:** alta, edición y eliminación contra la API, restringida al rol `ADMIN`.
+- **Pedidos:** página visible solo para `ADMIN` y `VENDEDOR`, con listado de boletas desde `GET /api/v1/boletas`.
+- **Rutas protegidas:** `/administracion` exige `ADMIN`; `/pedidos` exige `ADMIN` o `VENDEDOR`; se verifica la expiración del JWT en el cliente.
+- **Documentación de la API:** Swagger UI y OpenAPI disponibles en el backend.
+
+## Rutas del frontend
+
+| Ruta | Página | Acceso |
+|---|---|---|
+| `/` | `Inicio` | Público |
+| `/servicios` | `Producto` | Público |
+| `/servicio/:id` | `DetalleProducto` | Público |
+| `/login` | `Login` | Público |
+| `/registro` | `Registro` | Público |
+| `/carrito` | `Carrito` | Público (la compra exige sesión) |
+| `/administracion` | `Administracion` | Solo `ADMIN` |
+| `/pedidos` | `Pedidos` | `ADMIN` o `VENDEDOR` |
+
+## API REST y control de acceso
+
+Base URL: `http://localhost:8080`
+
+| Endpoint | Método | Descripción | Acceso |
+|---|---|---|---|
+| `/api/v1/auth/login` | POST | Inicia sesión y devuelve token + datos del usuario | Público |
+| `/api/v1/auth/registro` | POST | Registra un nuevo usuario (`CLIENTE`) | Público |
+| `/api/v1/productos` | GET | Lista los servicios | Público |
+| `/api/v1/productos/{id}` | GET | Obtiene un servicio | Público |
+| `/api/v1/productos` | POST | Crea un servicio | `ADMIN` |
+| `/api/v1/productos/{id}` | PUT / DELETE | Edita o elimina un servicio | `ADMIN` |
+| `/api/v1/categorias` | GET | Lista categorías | Público |
+| `/api/v1/categorias` | POST / PUT / DELETE | Gestiona categorías | `ADMIN` |
+| `/api/v1/boletas` | GET | Lista pedidos | `ADMIN`, `VENDEDOR` |
+| `/api/v1/boletas` | POST | Crea una boleta | `ADMIN`, `CLIENTE` |
+| `/api/v1/boletas/{id}` | DELETE | Elimina una boleta | `ADMIN` |
+| `/api/v1/usuarios/**` | GET / POST / PUT / DELETE | Gestiona usuarios | `ADMIN` |
+| `/swagger-ui.html`, `/v3/api-docs/**` | GET | Documentación OpenAPI | Público |
+
+La configuración de CORS permite solicitudes desde `http://localhost:5173` con los métodos `GET`, `POST`, `PUT`, `DELETE` y `OPTIONS`. Las sesiones son `STATELESS` y CSRF está desactivado porque la autenticación se realiza mediante JWT.
+
+## Configuración de la base de datos
+
+`backend/src/main/resources/application.properties`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/nutrivida
+spring.datasource.username=root
+spring.datasource.password=Proyecto03_
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+> Ajusta el usuario y la contraseña según tu entorno local antes de ejecutar el backend. La contraseña mostrada es la configuración actual del proyecto; no debe usarse en producción.
+
+## Cómo ejecutar Fase_3
+
+Necesitas **Java 21**, **Node.js 20+**, **Maven** (o el wrapper incluido) y **MySQL 8** en ejecución.
+
+**1. Preparar la base de datos**
+
+```bash
+mysql -u root -p < Fase_3/database/nutrivida.sql
+```
+
+**2. Iniciar el backend** (desde `Fase_3/backend`)
+
+```bash
+cd Fase_3/backend
+./mvnw spring-boot:run
+# API en http://localhost:8080
+# Swagger UI en http://localhost:8080/swagger-ui.html
+```
+
+> En Windows usar `mvnw.cmd spring-boot:run`.
+
+**3. Iniciar el frontend** (desde `Fase_3/frontend`, en otra terminal)
+
+```bash
+cd Fase_3/frontend
+npm install
+npm run dev
+# http://localhost:5173
+```
+
+## Scripts del frontend (Fase_3)
+
+| Comando | Acción |
+|---|---|
+| `npm run dev` | Inicia el servidor de desarrollo de Vite |
+| `npm run build` | Genera la versión de producción en `dist/` |
+| `npm run preview` | Sirve la versión de producción |
+| `npm run lint` | Ejecuta ESLint |
+| `npm test` | Ejecuta las pruebas de Vitest una vez |
+| `npm run test:watch` | Ejecuta las pruebas en modo watch |
+
+También se puede ejecutar la prueba del backend con `./mvnw test` desde `Fase_3/backend`.
+
+## Limitaciones actuales de Fase_3
+
+- El token JWT y los datos del usuario se guardan en `localStorage`, por lo que son accesibles desde JavaScript del navegador.
+- Las credenciales de MySQL están en texto plano en `application.properties`.
+- El carrito se mantiene en memoria/Context API; no se persiste entre recargas.
+- Algunos mensajes de éxito/error usan `alert()` y `console.log`.
+- La URL base de la API (`http://localhost:8080`) está hardcodeada en el frontend.
 
 ---
 
@@ -269,6 +471,11 @@ cd Fase_2
 npm install
 npm run dev
 # http://localhost:5173
+
+# Fase_3 — Full Stack (requiere MySQL, Java 21 y Node.js)
+mysql -u root -p < Fase_3/database/nutrivida.sql
+cd Fase_3/backend && ./mvnw spring-boot:run   # terminal 1, http://localhost:8080
+cd Fase_3/frontend && npm install && npm run dev  # terminal 2, http://localhost:5173
 ```
 
 ## Estado del repositorio
@@ -276,6 +483,7 @@ npm run dev
 | Fase | ¿Se sigue modificando? | Rol en el proyecto |
 |---|---|---|
 | `Fase_1` | No | Referencia histórica y base visual/funcional |
-| `Fase_2` | **Sí, activamente** | Implementación actual sobre React |
+| `Fase_2` | No (base reutilizada) | Etapa intermedia de SPA sobre React |
+| `Fase_3` | **Sí, activamente** | Implementación Full Stack vigente |
 
-Si estás revisando el proyecto en GitHub, toma `Fase_2` como la versión vigente y `Fase_1` como el punto de partida. Las diferencias entre ambas son intencionales: muestran la evolución desde un sitio estático hasta una aplicación React con estado, rutas y pruebas automatizadas.
+Si estás revisando el proyecto en GitHub, toma `Fase_3` como la versión vigente: es la que conecta React con Spring Boot, MySQL y autenticación JWT. `Fase_2` muestra la evolución del frontend y `Fase_1` el punto de partida estático. Las diferencias entre fases son intencionales.
