@@ -69,6 +69,10 @@ public class BoletaService {
             int precioUnitario = producto.getPrecio();
             int subtotal = precioUnitario * cantidad;
 
+            int stockActual = producto.getStock() == null ? 0 : producto.getStock();
+            producto.setStock(Math.max(0, stockActual - cantidad));
+            productoRepository.save(producto);
+
             DetalleBoleta detalle = new DetalleBoleta();
 
             detalle.setProducto(producto);

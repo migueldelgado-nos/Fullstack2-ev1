@@ -9,7 +9,8 @@ const producto = {
     id: '1',
     nombre: 'Primera consulta nutricional',
     precio: 35000,
-    descripcion: 'Evaluación nutricional inicial'
+    descripcion: 'Evaluación nutricional inicial',
+    stock: 5
 }
 
 function ContadorCarrito() {
@@ -20,7 +21,7 @@ function ContadorCarrito() {
 
 describe('Componente Producto', () => {
 
-    test('muestra el nombre, precio y descripción', () => {
+    test('muestra el nombre, precio, descripción y stock de la BD', () => {
 
         renderConCarrito(<ProductoComp {...producto} />)
 
@@ -34,8 +35,10 @@ describe('Componente Producto', () => {
             screen.getByText('Evaluación nutricional inicial')
         ).toBeInTheDocument()
 
+        expect(screen.getByText('$35.000')).toBeInTheDocument()
+
         expect(
-            screen.getByText('$35.000')
+            screen.getByText('Stock disponible: 5')
         ).toBeInTheDocument()
     })
 
@@ -59,10 +62,6 @@ describe('Componente Producto', () => {
             </>
         )
 
-        expect(
-            screen.getByText('Productos en carrito: 0')
-        ).toBeInTheDocument()
-
         await user.click(
             screen.getByRole('button', { name: 'Agregar al carrito' })
         )
@@ -72,23 +71,12 @@ describe('Componente Producto', () => {
         ).toBeInTheDocument()
     })
 
-    test('guarda el stock inicial de 5 en localStorage', () => {
+    test('muestra el stock que viene en la respuesta de la API', () => {
 
-        renderConCarrito(<ProductoComp {...producto} />)
-
-        expect(
-            localStorage.getItem('Primera consulta nutricional')
-        ).toBe('5')
-    })
-
-    test('respeta el stock guardado en localStorage', () => {
-
-        localStorage.setItem('Primera consulta nutricional', '3')
-
-        renderConCarrito(<ProductoComp {...producto} />)
+        renderConCarrito(<ProductoComp {...producto} stock={3} />)
 
         expect(
-            localStorage.getItem('Primera consulta nutricional')
-        ).toBe('3')
+            screen.getByText('Stock disponible: 3')
+        ).toBeInTheDocument()
     })
 })

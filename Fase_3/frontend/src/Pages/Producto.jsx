@@ -20,7 +20,7 @@ function Producto() {
             try {
 
                 const response = await fetch(
-                    'http://localhost:8080/api/v1/productos',
+                    '/api/v1/productos',
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -82,6 +82,7 @@ function Producto() {
                             nombre={producto.nombre}
                             descripcion={producto.descripcion}
                             precio={producto.precio}
+                            stock={producto.stock}
                         />
 
                     </div>

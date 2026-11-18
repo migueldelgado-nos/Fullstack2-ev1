@@ -32,7 +32,7 @@ describe('CarritoContext', () => {
         expect(result.current.productos).toEqual([])
     })
 
-    test('agrega un servicio nuevo', () => {
+    test('agrega un servicio nuevo con cantidad 1', () => {
 
         const { result } = renderCarrito()
 
@@ -40,10 +40,12 @@ describe('CarritoContext', () => {
             result.current.agregarProducto(producto)
         })
 
-        expect(result.current.productos).toEqual([producto])
+        expect(result.current.productos).toEqual([
+            { ...producto, cantidad: 1 }
+        ])
     })
 
-    test('no duplica un servicio que ya está en el carrito', () => {
+    test('no duplica un servicio, solo aumenta la cantidad', () => {
 
         const { result } = renderCarrito()
 
@@ -52,7 +54,9 @@ describe('CarritoContext', () => {
             result.current.agregarProducto(producto)
         })
 
-        expect(result.current.productos).toEqual([producto])
+        expect(result.current.productos).toEqual([
+            { ...producto, cantidad: 2 }
+        ])
     })
 
     test('mantiene separados los servicios distintos', () => {
@@ -65,8 +69,8 @@ describe('CarritoContext', () => {
         })
 
         expect(result.current.productos).toEqual([
-            producto,
-            otroProducto
+            { ...producto, cantidad: 1 },
+            { ...otroProducto, cantidad: 1 }
         ])
     })
 
@@ -83,7 +87,9 @@ describe('CarritoContext', () => {
             result.current.eliminarProducto(producto.id)
         })
 
-        expect(result.current.productos).toEqual([otroProducto])
+        expect(result.current.productos).toEqual([
+            { ...otroProducto, cantidad: 1 }
+        ])
     })
 
     test('ignora un id inexistente al eliminar', () => {
@@ -98,6 +104,8 @@ describe('CarritoContext', () => {
             result.current.eliminarProducto('999')
         })
 
-        expect(result.current.productos).toEqual([producto])
+        expect(result.current.productos).toEqual([
+            { ...producto, cantidad: 1 }
+        ])
     })
 })

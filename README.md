@@ -6,14 +6,15 @@ Repositorio de una clínica nutricional desarrollado en **tres fases independien
 |---|---|---|
 | **`Fase_1/`** | Sitio web estático con HTML, CSS, Bootstrap y JavaScript vanilla | Cerrada — base inicial del proyecto |
 | **`Fase_2/`** | Aplicación SPA con React, Vite, React Router y Context API | En desarrollo — base del frontend actual |
-| **`Fase_3/`** | Full stack: React + Spring Boot + MySQL con autenticación JWT | **Activa — evaluación final del proyecto** |
+| **`Fase_3/`** | Full stack: React + Spring Boot + MySQL con autenticación JWT | **Activa — desplegada en EC2 con nginx + MySQL** |
 
 ![Fase 1](https://img.shields.io/badge/Fase%201-HTML%20%7C%20CSS%20%7C%20JavaScript-0b7285?style=flat-square)
 ![Fase 2](https://img.shields.io/badge/Fase%202-React%20%2B%20Vite-2f9e44?style=flat-square)
 ![Fase 3](https://img.shields.io/badge/Fase%203-React%20%2B%20Spring%20Boot%20%2B%20MySQL-7048e8?style=flat-square)
-![Pruebas](https://img.shields.io/badge/pruebas-51%20passing-brightgreen?style=flat-square)
+![Pruebas Fase 2](https://img.shields.io/badge/Fase%202%20pruebas-51%20passing-brightgreen?style=flat-square)
+![Pruebas Fase 3](https://img.shields.io/badge/Fase%203%20pruebas-44%20passing-brightgreen?style=flat-square)
 
-> **Importante:** `Fase_3` es la versión vigente del proyecto: integra el frontend React con un backend real, base de datos y autenticación. `Fase_2` se conserva como la etapa intermedia de SPA y `Fase_1` como referencia histórica. Cada fase puede ejecutarse de forma independiente.
+> **Importante:** `Fase_3` es la versión vigente del proyecto: integra el frontend React con un backend real, base de datos y autenticación, y está desplegada en la EC2 en <http://18.208.189.121>. `Fase_2` se conserva como la etapa intermedia de SPA y `Fase_1` como referencia histórica. Cada fase puede ejecutarse de forma independiente.
 
 ---
 
@@ -27,11 +28,11 @@ Repositorio de una clínica nutricional desarrollado en **tres fases independien
 | **Estilos** | Bootstrap 5 por CDN + CSS propio | Bootstrap 5 instalado + CSS propio | Bootstrap 5 + React Bootstrap + CSS propio |
 | **Formularios** | Validación con `alert()` | Validación con estado y mensajes en pantalla | Validación en cliente y en el backend |
 | **Carrito** | Contador global de cantidad y total | Carrito con servicios únicos, descripción, valor y total | Carrito que genera boletas reales en la BD |
-| **Datos** | Fijos en el HTML | Definidos en componentes y estado de React | MySQL + JPA (productos, usuarios, categorías, boletas) |
+| **Datos** | Fijos en el HTML | Definidos en componentes y estado de React | MySQL + JPA (productos con stock, usuarios, categorías, boletas) |
 | **Autenticación** | No existe | Solo validación de formularios | Spring Security + JWT con roles ADMIN/VENDEDOR/CLIENTE |
 | **Pruebas** | Verificación manual | 51 pruebas automatizadas con Vitest + Testing Library | Pruebas de frontend (Vitest) + prueba de contexto de Spring |
 | **Build** | No requiere build | Vite (`dev`, `build`, `preview`) | Vite (frontend) + Maven (backend) |
-| **Ejecución** | Abrir `index.html` o servidor estático | `npm install` + `npm run dev` | MySQL + `./mvnw spring-boot:run` + `npm run dev` |
+| **Ejecución** | Abrir `index.html` o servidor estático | `npm install` + `npm run dev` | EC2: nginx + systemd + MySQL / local: MySQL + Maven + Vite |
 
 ---
 
@@ -249,7 +250,7 @@ Estas necesidades de `Fase_2` motivaron la evolución hacia `Fase_3`:
 - Ampliar la cobertura de pruebas y agregar reporte de cobertura.
 - Pulir accesibilidad, estados de carga y manejo de errores.
 
-> En `Fase_3` se implementaron la API, la base de datos, la autenticación JWT, la administración conectada al catálogo y la generación real de boletas. El carrito sigue en memoria y quedan pendientes aspectos como el reporte de cobertura y el reemplazo total de `alert()`/`console.log`.
+> En `Fase_3` se implementaron la API, la base de datos, la autenticación JWT, la administración conectada al catálogo, la generación real de boletas y el stock en MySQL. El carrito sigue en memoria (la boleta sí se persiste) y quedan pendientes aspectos como el reporte de cobertura y el reemplazo total de `alert()`/`console.log`.
 
 ## Limitaciones actuales de esta fase
 
@@ -346,9 +347,10 @@ Fase_3/
 
 ## Funcionalidades implementadas
 
-- **Catálogo de servicios:** el frontend obtiene los productos desde `GET /api/v1/productos`.
-- **Detalle de servicio:** vista individual por `id` con nombre, descripción y precio.
-- **Carrito y compra:** `finalizarCompra()` envía un `POST /api/v1/boletas` con el token JWT y crea la boleta con sus detalles en MySQL.
+- **Catálogo de servicios:** el frontend obtiene los productos (nombre, descripción, precio, categoría y stock) desde `GET /api/v1/productos`.
+- **Detalle de servicio:** vista individual por `id` que consulta `GET /api/v1/productos/{id}`; ya no usa un catálogo hardcodeado.
+- **Carrito y compra:** `finalizarCompra()` envía un `POST /api/v1/boletas` con el token JWT; el backend crea la boleta con sus detalles en MySQL y descuenta el stock de cada producto.
+- **Stock en la BD:** el valor se muestra en el catálogo y en el detalle, y se actualiza en la tabla `producto` al vender.
 - **Login real:** `POST /api/v1/auth/login` valida la contraseña con BCrypt y devuelve un JWT; el frontend guarda `token`, `nombre`, `rol` y `usuarioId` en `localStorage`.
 - **Registro real:** `POST /api/v1/auth/registro` crea usuarios con rol `CLIENTE` y contraseña codificada.
 - **Administración de productos:** alta, edición y eliminación contra la API, restringida al rol `ADMIN`.
@@ -371,7 +373,7 @@ Fase_3/
 
 ## API REST y control de acceso
 
-Base URL: `http://localhost:8080`
+Base URL en la web desplegada: rutas relativas `/api/v1/...` (nginx redirige a `http://127.0.0.1:8080`). En desarrollo local con Vite, el backend responde en `http://localhost:8080`.
 
 | Endpoint | Método | Descripción | Acceso |
 |---|---|---|---|
@@ -389,7 +391,7 @@ Base URL: `http://localhost:8080`
 | `/api/v1/usuarios/**` | GET / POST / PUT / DELETE | Gestiona usuarios | `ADMIN` |
 | `/swagger-ui.html`, `/v3/api-docs/**` | GET | Documentación OpenAPI | Público |
 
-La configuración de CORS permite solicitudes desde `http://localhost:5173` con los métodos `GET`, `POST`, `PUT`, `DELETE` y `OPTIONS`. Las sesiones son `STATELESS` y CSRF está desactivado porque la autenticación se realiza mediante JWT.
+La configuración de CORS permite solicitudes desde `http://localhost:5173` para desarrollo local. En el despliegue no hace falta CORS: el frontend y la API comparten el mismo origen a través de nginx. Las sesiones son `STATELESS` y CSRF está desactivado porque la autenticación se realiza mediante JWT.
 
 ## Configuración de la base de datos
 
@@ -397,15 +399,31 @@ La configuración de CORS permite solicitudes desde `http://localhost:5173` con 
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/nutrivida
-spring.datasource.username=root
+spring.datasource.username=nutrivida
 spring.datasource.password=Proyecto03_
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-> Ajusta el usuario y la contraseña según tu entorno local antes de ejecutar el backend. La contraseña mostrada es la configuración actual del proyecto; no debe usarse en producción.
+> El usuario `nutrivida` se crea con permisos solo sobre la BD `nutrivida`. La contraseña mostrada es la configuración actual del proyecto; no debe usarse en producción.
 
-## Cómo ejecutar Fase_3
+## Despliegue en EC2 (estado actual)
+
+La versión desplegada está disponible en **<http://18.208.189.121>**. En la EC2:
+
+- **MySQL 8** con la BD `nutrivida` y el usuario `nutrivida`.
+- **Backend** como servicio systemd `nutrivida-backend` (JAR en `/opt/nutrivida/backend.jar`, `127.0.0.1:8080`, `-Xmx256m`).
+- **Frontend** compilado con `npm run build` y copiado a `/var/www/html`.
+- **nginx** con `/etc/nginx/sites-available/nutrivida`: sirve el SPA, hace proxy de `/api/` y Swagger, y usa `try_files $uri $uri/ /index.html` para las rutas de React Router.
+- Se agregó un archivo *swap* de 1 GB y un perfil de baja memoria para MySQL porque la EC2 tiene menos de 1 GB de RAM.
+
+```bash
+curl http://18.208.189.121/api/v1/productos   # JSON con los servicios y su stock
+curl http://18.208.189.121/swagger-ui.html    # documentación interactiva
+sudo systemctl status mysql nutrivida-backend nginx
+```
+
+## Cómo ejecutar Fase_3 en local
 
 Necesitas **Java 21**, **Node.js 20+**, **Maven** (o el wrapper incluido) y **MySQL 8** en ejecución.
 
@@ -450,11 +468,14 @@ También se puede ejecutar la prueba del backend con `./mvnw test` desde `Fase_3
 
 ## Limitaciones actuales de Fase_3
 
-- El token JWT y los datos del usuario se guardan en `localStorage`, por lo que son accesibles desde JavaScript del navegador.
-- Las credenciales de MySQL están en texto plano en `application.properties`.
-- El carrito se mantiene en memoria/Context API; no se persiste entre recargas.
-- Algunos mensajes de éxito/error usan `alert()` y `console.log`.
-- La URL base de la API (`http://localhost:8080`) está hardcodeada en el frontend.
+Estas limitaciones son parte del alcance de curso y están documentadas en `Fase_3/README.md`:
+
+- El JWT no se renueva: expira a las 8 horas y hay que volver a iniciar sesión.
+- El token y los datos del usuario se guardan en `localStorage`, accesibles desde JavaScript del navegador.
+- La clave de firma del JWT y la contraseña de MySQL están en archivos de configuración del proyecto.
+- El carrito se mantiene en memoria/Context API; no se persiste entre recargas (la boleta sí se guarda en la BD).
+- La validación de datos en el backend es básica y el stock se descuenta sin control de concurrencia.
+- Algunos mensajes de éxito/error usan `alert()` y `console.log`, y no hay reporte de cobertura.
 
 ---
 
@@ -476,6 +497,8 @@ npm run dev
 mysql -u root -p < Fase_3/database/nutrivida.sql
 cd Fase_3/backend && ./mvnw spring-boot:run   # terminal 1, http://localhost:8080
 cd Fase_3/frontend && npm install && npm run dev  # terminal 2, http://localhost:5173
+
+# Despliegue en la EC2: http://18.208.189.121 (nginx + systemd + MySQL)
 ```
 
 ## Estado del repositorio
@@ -484,6 +507,6 @@ cd Fase_3/frontend && npm install && npm run dev  # terminal 2, http://localhost
 |---|---|---|
 | `Fase_1` | No | Referencia histórica y base visual/funcional |
 | `Fase_2` | No (base reutilizada) | Etapa intermedia de SPA sobre React |
-| `Fase_3` | **Sí, activamente** | Implementación Full Stack vigente |
+| `Fase_3` | **Sí, activamente** | Implementación Full Stack vigente, desplegada en EC2 |
 
-Si estás revisando el proyecto en GitHub, toma `Fase_3` como la versión vigente: es la que conecta React con Spring Boot, MySQL y autenticación JWT. `Fase_2` muestra la evolución del frontend y `Fase_1` el punto de partida estático. Las diferencias entre fases son intencionales.
+Si estás revisando el proyecto en GitHub, toma `Fase_3` como la versión vigente: es la que conecta React con Spring Boot, MySQL y autenticación JWT, y la que está sirviéndose a través de nginx en <http://18.208.189.121>. `Fase_2` muestra la evolución del frontend y `Fase_1` el punto de partida estático. Las diferencias entre fases son intencionales.

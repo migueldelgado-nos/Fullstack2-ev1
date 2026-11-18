@@ -5,25 +5,23 @@ import { renderConCarrito } from '../test/utils'
 
 describe('Página Producto', () => {
 
-    test('muestra el título y las seis tarjetas', () => {
+    test('muestra las tarjetas que vienen de la API', async () => {
 
         renderConCarrito(<Producto />)
 
-        expect(
-            screen.getByRole('heading', { name: 'Nuestros servicios' })
-        ).toBeInTheDocument()
+        const botones = await screen.findAllByRole('button', {
+            name: 'Agregar al carrito'
+        })
 
-        expect(
-            screen.getAllByRole('button', { name: 'Agregar al carrito' })
-        ).toHaveLength(6)
+        expect(botones).toHaveLength(3)
     })
 
-    test('muestra los nombres de los servicios', () => {
+    test('muestra los nombres de los servicios', async () => {
 
         renderConCarrito(<Producto />)
 
         expect(
-            screen.getByRole('heading', {
+            await screen.findByRole('heading', {
                 name: 'Primera consulta nutricional'
             })
         ).toBeInTheDocument()

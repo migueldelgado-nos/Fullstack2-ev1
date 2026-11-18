@@ -17,7 +17,7 @@ function Administracion() {
         try {
 
             const response = await fetch(
-                'http://localhost:8080/api/v1/productos',
+                '/api/v1/productos',
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -83,7 +83,7 @@ function Administracion() {
             if (editandoId !== null) {
 
                 response = await fetch(
-                    `http://localhost:8080/api/v1/productos/${editandoId}`,
+                    `/api/v1/productos/${editandoId}`,
                     {
                         method: 'PUT',
 
@@ -99,7 +99,7 @@ function Administracion() {
             } else {
 
                 response = await fetch(
-                    'http://localhost:8080/api/v1/productos',
+                    '/api/v1/productos',
                     {
                         method: 'POST',
 
@@ -139,7 +139,7 @@ function Administracion() {
         try {
 
             const response = await fetch(
-                `http://localhost:8080/api/v1/productos/${id}`,
+                `/api/v1/productos/${id}`,
                 {
                     method: 'DELETE',
 

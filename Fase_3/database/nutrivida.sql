@@ -114,6 +114,7 @@ CREATE TABLE `producto` (
   `nombre` varchar(255) NOT NULL,
   `precio` int NOT NULL,
   `categoria_id` bigint NOT NULL,
+  `stock` int NOT NULL DEFAULT 5,
   PRIMARY KEY (`id`),
   KEY `FKodqr7965ok9rwquj1utiamt0m` (`categoria_id`),
   CONSTRAINT `FKodqr7965ok9rwquj1utiamt0m` FOREIGN KEY (`categoria_id`) REFERENCES `categoria` (`id`)
@@ -126,7 +127,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
-INSERT INTO `producto` VALUES (2,'Evaluación inicial, antropometría y diseño del primer plan de alimentación','Primera consulta nutricional',35000,2),(3,'Seguimiento del progreso y ajustes al plan de alimentación','Control nutricional',20000,2),(4,'Consulta nutricional realizada de manera online','Teleconsulta nutricional',20000,2),(5,'Plan alimenticio personalizado enfocado en la pérdida de peso','Plan perdida de peso',20000,2),(6,'Plan nutricional orientado al rendimiento y actividad física','Nutricion Deportiva',20000,2),(7,'Evaluación de medidas corporales y composición corporal','Antropometri completa',20000,2);
+INSERT INTO `producto` VALUES (2,'Evaluación inicial, antropometría y diseño del primer plan de alimentación','Primera consulta nutricional',35000,2,5),(3,'Seguimiento del progreso y ajustes al plan de alimentación','Control nutricional',20000,2,5),(4,'Consulta nutricional realizada de manera online','Teleconsulta nutricional',20000,2,5),(5,'Plan alimenticio personalizado enfocado en la pérdida de peso','Plan perdida de peso',20000,2,5),(6,'Plan nutricional orientado al rendimiento y actividad física','Nutricion Deportiva',20000,2,5),(7,'Evaluación de medidas corporales y composición corporal','Antropometri completa',20000,2,5);
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 

@@ -33,7 +33,7 @@ function Registro() {
         try {
 
             const response = await fetch(
-                'http://localhost:8080/api/v1/auth/registro',
+                '/api/v1/auth/registro',
                 {
                     method: 'POST',
 
