@@ -36,7 +36,7 @@ function Carrito() {
     try {
 
       const response = await fetch(
-        'http://localhost:8080/api/v1/boletas',
+        '/api/v1/boletas',
         {
           method: 'POST',
 
@@ -108,11 +108,12 @@ function Carrito() {
                   </strong>
 
                   <button
-                    className="finalizar"
-                    disabled={productos.length === 0}
-                    onClick={() => alert("Continuar al proceso de compra")}
+                    type="button"
+                    className="btn btn-outline-danger btn-sm"
+                    aria-label={`Eliminar ${producto.nombre}`}
+                    onClick={() => eliminarProducto(producto.id)}
                   >
-                    Finalizar compra
+                    Eliminar
                   </button>
                 </div>
               </article>

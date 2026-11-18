@@ -13,7 +13,7 @@ function renderNavbar(route = '/') {
 
 describe('Componente Navbar', () => {
 
-    test('muestra el título y los seis enlaces', () => {
+    test('muestra el título y los enlaces públicos', () => {
 
         renderNavbar()
 
@@ -28,7 +28,6 @@ describe('Componente Navbar', () => {
             ['Servicios', '/servicios'],
             ['Login', '/login'],
             ['Registrarse', '/registro'],
-            ['Administración', '/administracion'],
             ['Carrito', '/carrito']
         ]
 

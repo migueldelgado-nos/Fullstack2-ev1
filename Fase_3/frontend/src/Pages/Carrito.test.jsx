@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, test, vi } from 'vitest'
 import Carrito from './Carrito'
@@ -150,9 +150,12 @@ describe('Página Carrito', () => {
         ).not.toBeInTheDocument()
     })
 
-    test('finalizar la compra muestra una alerta', async () => {
+    test('finalizar la compra crea la boleta y muestra el total', async () => {
 
         const user = userEvent.setup()
+
+        localStorage.setItem('token', 'token-de-prueba')
+        localStorage.setItem('usuarioId', '1')
 
         const alerta = vi.spyOn(window, 'alert').mockImplementation(() => {})
 
@@ -164,8 +167,10 @@ describe('Página Carrito', () => {
             screen.getByRole('button', { name: 'Finalizar compra' })
         )
 
-        expect(alerta).toHaveBeenCalledWith(
-            'Continuar al proceso de compra'
-        )
+        await waitFor(() => {
+            expect(alerta).toHaveBeenCalledWith(
+                expect.stringContaining('Compra realizada correctamente')
+            )
+        })
     })
 })

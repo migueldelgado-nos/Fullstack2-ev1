@@ -1,22 +1,9 @@
-import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useCarrito } from '../Context/CarritoContext'
 
-function ProductoComp({ id, nombre, precio, descripcion }) {
+function ProductoComp({ id, nombre, precio, descripcion, stock = 0 }) {
 
     const { agregarProducto } = useCarrito()
-
-    const [stock] = useState(() => {
-        const stockGuardado = localStorage.getItem(nombre)
-
-        return stockGuardado !== null ? Number(stockGuardado) : 5 //operador ternario
-    })
-
-
-    useEffect(() => {
-        localStorage.setItem(nombre, stock)
-    }, [stock, nombre])
-
 
     const agregarAlCarrito = () => {
         agregarProducto({
@@ -45,6 +32,10 @@ function ProductoComp({ id, nombre, precio, descripcion }) {
                         currency: "CLP",
                         maximumFractionDigits: 0,
                     })}
+                </p>
+
+                <p className="card-text stock">
+                    Stock disponible: {stock}
                 </p>
 
                 <div className="d-flex flex-wrap gap-2 justify-content-center mt-auto">
